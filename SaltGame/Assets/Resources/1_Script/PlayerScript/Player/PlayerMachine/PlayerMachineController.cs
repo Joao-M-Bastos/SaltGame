@@ -35,6 +35,11 @@ public class PlayerMachineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentState.UpdateState(this, player);
+    }
+
+    private void FixedUpdate()
+    {
+        currentState.FixedState(this, player);
     }
 }

@@ -6,6 +6,8 @@ public interface PlayerBaseState
 {
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight);
 
+    public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight);
+
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight);
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight);

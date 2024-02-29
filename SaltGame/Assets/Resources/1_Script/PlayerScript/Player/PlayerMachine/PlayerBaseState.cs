@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBaseState : MonoBehaviour
+public interface PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight);
+
+    public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight);
 }

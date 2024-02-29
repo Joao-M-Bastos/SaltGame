@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingState_Player : MonoBehaviour
+public class MovingState_Player : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        Debug.Log("Entrou estado andando");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -6,6 +6,6 @@ public class MenuManager : MonoBehaviour
 {
     public void GoToScene(int sceneCode)
     {
-        ChangeScene.GoToScene(sceneCode);
+        CommomMetods.GoToScene(sceneCode);
     }
 }

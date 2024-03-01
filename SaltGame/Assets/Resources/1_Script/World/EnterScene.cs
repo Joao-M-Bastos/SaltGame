@@ -10,6 +10,6 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 
     public void GoToNextPlace(PlayerScrpt player)
     {
-        ChangeScene.GoToScene(sceneCode);
+        CommomMetods.GoToScene(sceneCode);
     }
 }

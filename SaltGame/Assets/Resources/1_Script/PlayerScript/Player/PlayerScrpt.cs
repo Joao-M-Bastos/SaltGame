@@ -35,8 +35,13 @@ public class PlayerScrpt : MonoBehaviour
 
     public void Flip()
     {
-        saltKnightAsset.transform.localRotation *= new Quaternion(1,-1,1,1);
         this.transform.Rotate(0,180,0);
+
+        if(lookingRight)
+            saltKnightAsset.transform.Rotate(0, -70, 0);
+        else
+            saltKnightAsset.transform.Rotate(0, 70, 0);
+
         playerRB.velocity *= 0;
         lookingRight = !lookingRight;
     }

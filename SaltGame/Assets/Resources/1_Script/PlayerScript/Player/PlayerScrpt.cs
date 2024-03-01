@@ -13,6 +13,8 @@ public class PlayerScrpt : MonoBehaviour
     [SerializeField] bool lookingRight;
     public bool LookingRight => lookingRight;
 
+    [SerializeField] GameObject saltKnightAsset;
+
     float dir;
     public float Direction => dir;
 
@@ -33,6 +35,7 @@ public class PlayerScrpt : MonoBehaviour
 
     public void Flip()
     {
+        saltKnightAsset.transform.localRotation *= new Quaternion(1,-1,1,1);
         this.transform.Rotate(0,180,0);
         playerRB.velocity *= 0;
         lookingRight = !lookingRight;

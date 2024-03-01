@@ -7,9 +7,9 @@ public class MovingState_Player : PlayerBaseState
 {
     public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        if (saltKnight.Direction != 0)
+        if (saltKnight.Direction != 0 && Mathf.Abs(saltKnight.playerRB.velocity.x) < saltKnight.Speed)
         {
-            saltKnight.playerRB.AddForce(saltKnight.transform.forward * saltKnight.Speed, ForceMode.VelocityChange);
+            saltKnight.playerRB.AddForce(saltKnight.transform.forward * Time.deltaTime, ForceMode.VelocityChange);
         }
         else
         {

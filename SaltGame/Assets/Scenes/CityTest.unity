@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55608c421c60724f90ee875fb45cc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 5
   rigidBody: {fileID: 583819795}
   lookingRight: 1
   saltKnightAsset: {fileID: 1332106344}

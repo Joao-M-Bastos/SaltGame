@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,11 +28,18 @@ public class PlayerScrpt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CanFlip()) Flip();
+        
+    }
+
+    private bool CanFlip()
+    {
         dir = Input.GetAxis("Horizontal");
 
-        if (dir < 0 && LookingRight) Flip();
-        if (dir > 0 && !LookingRight) Flip();
-    }   
+        if (dir < 0 && LookingRight) return true;
+        if (dir > 0 && !LookingRight) return true;
+        return false;
+    }
 
     public void Flip()
     {

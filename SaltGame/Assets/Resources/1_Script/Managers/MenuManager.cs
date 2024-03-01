@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] int sceneCode;
-
-    public void GoToNextPlace()
+    public void GoToScene(int sceneCode)
     {
         ChangeScene.GoToScene(sceneCode);
     }

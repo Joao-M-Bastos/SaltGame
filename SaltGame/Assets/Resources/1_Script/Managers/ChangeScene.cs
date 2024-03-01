@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Classe estatica pode ser acessada por qualquer um sem necessidade de instanciar
 public static class ChangeScene
 {
     public static void GoToScene(int sceneID)

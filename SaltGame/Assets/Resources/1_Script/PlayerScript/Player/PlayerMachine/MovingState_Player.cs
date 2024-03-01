@@ -7,13 +7,18 @@ public class MovingState_Player : PlayerBaseState
 {
     public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        if (saltKnight.Direction != 0 && Mathf.Abs(saltKnight.playerRB.velocity.x) < saltKnight.Speed)
+        //Se a velociade dele for maior que a permitida nem acelera nem força desacelerar (o atrito desacelera)
+        if (Mathf.Abs(saltKnight.playerRB.velocity.x) < saltKnight.Speed) return;
+
+        if (saltKnight.Direction != 0)
         {
-            saltKnight.playerRB.AddForce(saltKnight.transform.forward * Time.deltaTime, ForceMode.VelocityChange);
+            //Acelera pra frente
+            saltKnight.playerRB.AddForce(saltKnight.transform.forward / 5, ForceMode.VelocityChange);
         }
         else
         {
-            saltKnight.playerRB.velocity *= 0.8f;
+            //Para o jogador para mais rapidamente
+            saltKnight.playerRB.velocity *= 0.6f;
         }
     }
 

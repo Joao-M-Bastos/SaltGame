@@ -7,7 +7,12 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool floating;
-    Vector3 playerPosition;
+    Transform playerTransform;
+
+    public void SetPlayerPosition(Transform _playerTransform)
+    {
+        playerTransform = _playerTransform;
+    }
 
 
     public void MoveFoward()
@@ -27,11 +32,12 @@ public abstract class BaseEnemy : MonoBehaviour
     public void Die()
     {
         OnDie();
+        NumOfEnemiesAlive.Subtract();
         Destroy(this.gameObject);
     }
 
     public float DistanceFromPlayer()
     {
-        return Vector3.Distance(transform.position, playerPosition);
+        return Vector3.Distance(transform.position, playerTransform.position);
     }
 }

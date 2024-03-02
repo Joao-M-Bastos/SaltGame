@@ -15,8 +15,7 @@ public class WaveCaller : MonoBehaviour
             if(waveIndexValue < 0)
                 waveIndexValue = Random.Range(0, possibleWaves.Length);
 
-
-            possibleWaves[waveIndexValue].StartWave();
+            Instantiate(possibleWaves[waveIndexValue], this.transform.position, this.transform.rotation);
         }
         Destroy(this.gameObject);
     }

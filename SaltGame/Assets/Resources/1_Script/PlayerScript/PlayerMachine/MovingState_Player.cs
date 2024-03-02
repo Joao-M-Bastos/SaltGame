@@ -7,29 +7,35 @@ public class MovingState_Player : PlayerBaseState
 {
     public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        if (saltKnight.Direction != 0 && Mathf.Abs(saltKnight.playerRB.velocity.x) < saltKnight.Speed)
+        if (saltKnight.Direction != 0)
         {
-            saltKnight.playerRB.AddForce(saltKnight.transform.forward * Time.deltaTime, ForceMode.VelocityChange);
+            //Se a velociade dele for maior que a permitida ele não acelera
+            if (Mathf.Abs(saltKnight.playerRB.velocity.x) > saltKnight.Speed) return;
+            //Acelera pra frente
+            saltKnight.playerRB.AddForce(saltKnight.transform.forward * 10 * Time.deltaTime, ForceMode.VelocityChange);
         }
         else
         {
-            saltKnight.playerRB.velocity *= 0.8f;
+            //Para o jogador para mais rapidamente
+            saltKnight.playerRB.velocity *= 0.6f;
         }
     }
 
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        Debug.Log("Entrou estado andando");
+        
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        Debug.Log("Saiu estado andando");
+        saltKnight.playerRB.velocity *= 0;
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        if (saltKnight.CurrentEntrance != null && Input.GetKeyDown(KeyCode.Space))
+            saltKnight.CurrentEntrance.GoToNextPlace();
+            
 
         TryChangeState();
     }

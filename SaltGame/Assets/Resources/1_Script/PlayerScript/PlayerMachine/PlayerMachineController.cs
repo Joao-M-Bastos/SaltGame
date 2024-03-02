@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerMachineController : MonoBehaviour
@@ -14,7 +15,8 @@ public class PlayerMachineController : MonoBehaviour
     #region States
     PlayerBaseState currentState;
 
-    PlayerBaseState movingState = new MovingState_Player();
+    readonly public PlayerBaseState movingState = new MovingState_Player();
+    readonly public PlayerBaseState combatState = new CombatStatePlayer();
     #endregion
 
     // Start is called before the first frame update

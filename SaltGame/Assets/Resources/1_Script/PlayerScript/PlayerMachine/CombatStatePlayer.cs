@@ -12,16 +12,21 @@ public class CombatStatePlayer : PlayerBaseState
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
         Debug.Log("Enter combat state");
-        saltKnight.playerRB.velocity *= 0;
+        saltKnight.SetShildCollider(true);
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
         Debug.Log("Exit combat state");
+        saltKnight.SetShildCollider(false);
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        if (saltKnight.GetSwordActive())
+            saltKnight.SetSwordCollider(false);
+
+        if (Input.GetMouseButtonDown(0))
+            saltKnight.SetSwordCollider(true);
     }
 }

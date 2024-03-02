@@ -7,8 +7,6 @@ public class MovingState_Player : PlayerBaseState
 {
     public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
-
         if (saltKnight.Direction != 0)
         {
             //Se a velociade dele for maior que a permitida ele não acelera
@@ -25,12 +23,12 @@ public class MovingState_Player : PlayerBaseState
 
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        Debug.Log("Entrou estado andando");
+        
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        Debug.Log("Saiu estado andando");
+        saltKnight.playerRB.velocity *= 0;
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)

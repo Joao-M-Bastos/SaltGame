@@ -15,6 +15,8 @@ public class PlayerScrpt : MonoBehaviour
 
     [SerializeField] GameObject saltKnightAsset;
 
+    [SerializeField] GameObject shildBox, swordBox;
+
     //Pointers
  
     public Rigidbody playerRB => rigidBody;
@@ -107,5 +109,18 @@ public class PlayerScrpt : MonoBehaviour
 
         playerRB.velocity *= 0;
         lookingRight = !lookingRight;
+    }
+
+    public void SetSwordCollider(bool value)
+    {
+        swordBox.SetActive(value);
+    }
+    public void SetShildCollider(bool value)
+    {
+        shildBox.SetActive(value);
+    }
+    public bool GetSwordActive()
+    {
+        return swordBox.activeSelf;
     }
 }

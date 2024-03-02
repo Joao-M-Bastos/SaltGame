@@ -50,7 +50,6 @@ public class PlayerScrpt : MonoBehaviour
     {
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
         currentLife = maxLife;
-        DontDestroyOnLoad(this);
     }
 
     private void OnLevelWasLoaded(int level)

@@ -24,8 +24,6 @@ public abstract class Wave : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log( NumOfEnemiesAlive.getNumOfEnemiesAlive());
-        Debug.Log("Amount" + spawnBehaviour.amountToSpawn);
         if (spawnBehaviour.amountToSpawn <= 0 && NumOfEnemiesAlive.getNumOfEnemiesAlive() <= 0)
         {
             if (currentRoundNumber >= quantityOfRounds)

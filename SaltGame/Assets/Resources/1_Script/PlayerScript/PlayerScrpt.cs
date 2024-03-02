@@ -16,7 +16,7 @@ public class PlayerScrpt : MonoBehaviour
 
     [SerializeField] GameObject saltKnightAsset;
 
-    [SerializeField] GameObject shildBox, swordBox;
+    [SerializeField] GameObject shildBox, swordBox, saltExplosionCollider;
 
     //Pointers
  
@@ -32,7 +32,7 @@ public class PlayerScrpt : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] bool lookingRight;
 
-    float dir;
+    float dir, explosionCoolown;
 
     int nextScenePositionCode;
 
@@ -86,17 +86,30 @@ public class PlayerScrpt : MonoBehaviour
     void Update()
     {
         if (CanFlip()) Flip();
+
+        if (saltExplosionCollider.activeSelf)
+        {
+            if (explosionCoolown > 0)
+                explosionCoolown -= Time.deltaTime;
+            else SetExplosionCollider(false);
+        }
     }
 
     public void TakeAHit()
     {
-        //SaltExplosion();
+        SaltExplosion();
         LoseLife(1);
     }
 
     private void LoseLife(int value)
     {
         currentLife -= value;
+    }
+
+    public void SaltExplosion()
+    {
+        explosionCoolown = 0.1f;
+        SetExplosionCollider(true);
     }
 
     private bool CanFlip()
@@ -128,6 +141,10 @@ public class PlayerScrpt : MonoBehaviour
     public void SetShildCollider(bool value)
     {
         shildBox.SetActive(value);
+    }
+    public void SetExplosionCollider(bool value)
+    {
+        saltExplosionCollider.SetActive(value);
     }
     public bool GetSwordActive()
     {

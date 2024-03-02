@@ -63,8 +63,6 @@ public class PlayerScrpt : MonoBehaviour
 
         currentEntrance = null;
         nextScenePositionCode = 0;
-
-        FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
     }
 
     private void OnTriggerEnter(Collider other)

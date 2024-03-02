@@ -7,12 +7,13 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool floating;
+    [SerializeField] Rigidbody rb;
     Vector3 playerPosition;
 
 
     public void MoveFoward()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        rb.velocity = transform.forward * speed * Time.deltaTime * 35;
 
         if (floating)
         {
@@ -21,6 +22,14 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
     public abstract void SpecialMove();
+
+    public abstract void OnDie();
+
+    public void Die()
+    {
+        OnDie();
+        Destroy(this.gameObject);
+    }
 
     public float DistanceFromPlayer()
     {

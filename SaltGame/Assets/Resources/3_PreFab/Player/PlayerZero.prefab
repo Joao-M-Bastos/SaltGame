@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4226967650246650750}
   - component: {fileID: 5141418542689127904}
+  - component: {fileID: 546055370268950006}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SwordCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,12 +48,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &546055370268950006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873728853810479228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df895126dc82ce5448d73dd6f15339d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2622569870406223408
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 6758626826013684879}
   saltKnightAsset: {fileID: 6766866998374829684}
+  shildBox: {fileID: 5605121481734154039}
+  swordBox: {fileID: 873728853810479228}
   speed: 4
   lookingRight: 1
 --- !u!114 &8073309239538268600
@@ -263,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1113087024724811715}
   - component: {fileID: 4552871640353950918}
+  - component: {fileID: 7959285060113928131}
   m_Layer: 0
   m_Name: ShildCollider
   m_TagString: Untagged
@@ -300,12 +316,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 0.32705307}
   m_Center: {x: -1.2752166e-16, y: 0, z: 0.053526446}
+--- !u!114 &7959285060113928131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5605121481734154039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb285187ef3e48499d3c107139d1d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6766866998374829684
 GameObject:
   m_ObjectHideFlags: 0

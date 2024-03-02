@@ -18,6 +18,6 @@ public class WaveCaller : MonoBehaviour
 
             possibleWaves[waveIndexValue].StartWave();
         }
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

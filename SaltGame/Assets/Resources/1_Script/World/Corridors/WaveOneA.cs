@@ -6,6 +6,6 @@ public class WaveOneA : Wave
 {
     public override void StartWave()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

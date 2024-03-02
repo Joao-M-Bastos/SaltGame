@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DeadHotChilliPepper : BaseEnemy
 {
+    public override void OnDie()
+    {
+        //throw new System.NotImplementedException();
+    }
+
     public override void SpecialMove()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     private void FixedUpdate()

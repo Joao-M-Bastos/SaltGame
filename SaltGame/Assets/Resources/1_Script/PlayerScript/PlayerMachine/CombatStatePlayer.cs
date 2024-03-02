@@ -38,5 +38,7 @@ public class CombatStatePlayer : PlayerBaseState
             saltKnight.SetSwordCollider(true);
             swordCooldown = 0.2f;
         }
+        if (Input.GetKeyDown(KeyCode.K))
+            controller.ChangeState(controller.movingState);
     }
 }

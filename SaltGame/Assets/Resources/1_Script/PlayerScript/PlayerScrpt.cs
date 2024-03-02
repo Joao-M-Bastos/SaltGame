@@ -85,7 +85,6 @@ public class PlayerScrpt : MonoBehaviour
     void Update()
     {
         if (CanFlip()) Flip();
-        
     }
 
     private bool CanFlip()

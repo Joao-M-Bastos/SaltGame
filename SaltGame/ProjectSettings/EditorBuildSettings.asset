@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 46dc530f921bcbf4c8eb13ff64752dc6
+  - enabled: 1
+    path: Assets/Scenes/FloorOne.unity
+    guid: 797c08e54fbc75246bf7aac71550eaa5
   m_configObjects: {}

@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class CarryOn : MonoBehaviour
 {
-    [SerializeField] GameObject[] childens;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
-        foreach (GameObject go in childens)
-            DontDestroyOnLoad(go);
     }
 }

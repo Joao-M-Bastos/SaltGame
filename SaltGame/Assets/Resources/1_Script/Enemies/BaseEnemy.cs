@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] int currencyValue;
     [SerializeField] bool floating;
     Transform playerTransform;
 
@@ -36,6 +37,12 @@ public abstract class BaseEnemy : MonoBehaviour
             this.Die();
             player.TakeAHit();
         }
+    }
+
+    public void KillEnemy()
+    {
+        Wallet.AddValue(currencyValue);
+        Die();
     }
 
     public void Die()

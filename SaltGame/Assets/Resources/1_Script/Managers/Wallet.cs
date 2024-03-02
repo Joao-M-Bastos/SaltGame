@@ -14,7 +14,7 @@ public static class Wallet
 
     public static void AddValue(int value)
     {
-        GameManager.GetInstance().UpdadeCurrencyCanvas(GetCurrency());
         currency += value;
+        GameManager.GetInstance().UpdadeCurrencyCanvas(GetCurrency());
     }
 }

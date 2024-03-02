@@ -9,7 +9,7 @@ public class SwordCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out BaseEnemy enemy))
         {
-            enemy.Die();
+            enemy.KillEnemy();
         }
     }
 }

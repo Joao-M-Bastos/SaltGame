@@ -177,7 +177,6 @@ GameObject:
   - component: {fileID: 5317331991718591075}
   - component: {fileID: 6944664838194406257}
   - component: {fileID: 2506113991175078076}
-  - component: {fileID: 2853024735248986221}
   m_Layer: 0
   m_Name: DeadHotChilliPeper
   m_TagString: Untagged
@@ -238,19 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  currencyValue: 1
   floating: 1
---- !u!114 &2853024735248986221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954950833531211088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d653d74c53f954544a582b1d9f96c208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7126370207977400156
 GameObject:
   m_ObjectHideFlags: 0

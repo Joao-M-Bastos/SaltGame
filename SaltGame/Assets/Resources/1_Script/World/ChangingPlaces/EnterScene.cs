@@ -7,8 +7,14 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 {
     //ID da cena a carregar
     [SerializeField] int sceneCode;
+    [SerializeField] int nextPositionCode;
 
-    public void GoToNextPlace(PlayerScrpt player)
+    public int GetNextPositionCode()
+    {
+        return nextPositionCode;
+    }
+
+    public void GoToNextPlace()
     {
         CommomMetods.GoToScene(sceneCode);
     }

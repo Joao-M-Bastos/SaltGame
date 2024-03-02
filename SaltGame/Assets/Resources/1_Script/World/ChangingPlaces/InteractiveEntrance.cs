@@ -6,5 +6,7 @@ using UnityEngine;
 public interface InteractiveEntrance
 {
     //Case ele aperte Espaço ele chama esse metodo, que leva o jogador
-    public void GoToNextPlace(PlayerScrpt player);
+    public void GoToNextPlace();
+
+    public int GetNextPositionCode();
 }

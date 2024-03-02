@@ -35,7 +35,9 @@ public class MovingState_Player : PlayerBaseState
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        if (saltKnight.CurrentEntrance != null && Input.GetKeyDown(KeyCode.Space))
+            saltKnight.CurrentEntrance.GoToNextPlace();
+            
 
         TryChangeState();
     }

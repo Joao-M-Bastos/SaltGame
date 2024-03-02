@@ -11,7 +11,8 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Player").Length > 0) return;
         
-        GameObject player = Instantiate(PlayerPrefab);
+        GameObject player = Instantiate(PlayerPrefab, this.transform.position, PlayerPrefab.transform.rotation);
         virtualCamera.Follow = player.transform;
+        
     }
 }

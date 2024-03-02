@@ -28,7 +28,8 @@ public class SpawnBehaviour : MonoBehaviour
             this.amountToSpawn--;
             
             int r = Random.Range(0, 2);
-            Instantiate(enemy, spawnPointTransforms[r].position, spawnPointTransforms[r].rotation);
+            GameObject instance = Instantiate(enemy, spawnPointTransforms[r].position, spawnPointTransforms[r].rotation);
+            instance.GetComponent<BaseEnemy>().SetPlayerPosition(this.transform);
         }
     }
 }

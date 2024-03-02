@@ -20,6 +20,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         Debug.Log("Exit combat state");
         saltKnight.SetShildCollider(false);
+        saltKnight.SetSwordCollider(false);
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
@@ -38,7 +39,5 @@ public class CombatStatePlayer : PlayerBaseState
             saltKnight.SetSwordCollider(true);
             swordCooldown = 0.2f;
         }
-        if (Input.GetKeyDown(KeyCode.K))
-            controller.ChangeState(controller.movingState);
     }
 }

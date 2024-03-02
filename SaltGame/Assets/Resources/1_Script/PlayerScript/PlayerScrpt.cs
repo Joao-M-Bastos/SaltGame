@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerScrpt : MonoBehaviour
@@ -26,9 +27,9 @@ public class PlayerScrpt : MonoBehaviour
     #endregion
 
     #region Values
-
+    [SerializeField] int maxLife;
+    [SerializeField] int currentLife;
     [SerializeField] float speed;
-
     [SerializeField] bool lookingRight;
 
     float dir;
@@ -48,6 +49,7 @@ public class PlayerScrpt : MonoBehaviour
     void Awake()
     {
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
+        currentLife = maxLife;
         DontDestroyOnLoad(this);
     }
 
@@ -67,7 +69,7 @@ public class PlayerScrpt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<InteractiveEntrance>(out InteractiveEntrance entrance))
+        if (other.TryGetComponent(out InteractiveEntrance entrance))
         {
             currentEntrance = entrance;
             nextScenePositionCode = entrance.GetNextPositionCode();
@@ -87,6 +89,17 @@ public class PlayerScrpt : MonoBehaviour
     void Update()
     {
         if (CanFlip()) Flip();
+    }
+
+    public void TakeAHit()
+    {
+        //SaltExplosion();
+        LoseLife(1);
+    }
+
+    private void LoseLife(int value)
+    {
+        currentLife -= value;
     }
 
     private bool CanFlip()

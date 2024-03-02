@@ -18,6 +18,7 @@ public abstract class Wave : MonoBehaviour
         currentRoundNumber = 0;
         playerMachineController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMachineController>();
         spawnBehaviour = GetComponent<SpawnBehaviour>();
+        
         GenerateRound();
     }
 

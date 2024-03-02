@@ -29,6 +29,15 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public abstract void OnDie();
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerScrpt player))
+        {
+            this.Die();
+            player.TakeAHit();
+        }
+    }
+
     public void Die()
     {
         OnDie();

@@ -12,6 +12,7 @@ public class CombatStatePlayer : PlayerBaseState
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
         Debug.Log("Enter combat state");
+        saltKnight.playerRB.velocity *= 0;
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)

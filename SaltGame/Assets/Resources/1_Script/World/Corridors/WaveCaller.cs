@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class WaveCaller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Wave[] possibleWaves;
+    [SerializeField] int waveIndexValue;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerMachineController>().ChangeState(other.GetComponent<PlayerMachineController>().combatState);
+            
+            if(waveIndexValue < 0)
+                waveIndexValue = Random.Range(0, possibleWaves.Length);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+            possibleWaves[waveIndexValue].StartWave();
+        }
+        Destroy(this);
     }
 }

@@ -14,7 +14,7 @@ public class MovingState_Player : PlayerBaseState
             //Se a velociade dele for maior que a permitida ele não acelera
             if (Mathf.Abs(saltKnight.playerRB.velocity.x) > saltKnight.Speed) return;
             //Acelera pra frente
-            saltKnight.playerRB.AddForce(saltKnight.transform.forward / 5, ForceMode.VelocityChange);
+            saltKnight.playerRB.AddForce(saltKnight.transform.forward * 2 * Time.deltaTime, ForceMode.VelocityChange);
         }
         else
         {

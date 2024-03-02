@@ -5,9 +5,6 @@ using UnityEngine;
 public abstract class Wave : MonoBehaviour
 {
     [SerializeField] GameObject[] potencialEnemies;
-    
-    public void StartWave()
-    {
-        Debug.Log("Wave Started");
-    }
+
+    public abstract void StartWave();
 }

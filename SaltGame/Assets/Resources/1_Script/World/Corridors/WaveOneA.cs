@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class WaveOneA : Wave
 {
-
+    public override void StartWave()
+    {
+        throw new System.NotImplementedException();
+    }
 }

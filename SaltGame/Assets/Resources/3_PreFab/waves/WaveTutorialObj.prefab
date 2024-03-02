@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potencialEnemies:
   - {fileID: 6954950833531211088, guid: 713fdf5801ada1640be47662f64b08b7, type: 3}
-  quantityOfRounds: 1
+  quantityOfRounds: 2
 --- !u!114 &1206794431758626174
 MonoBehaviour:
   m_ObjectHideFlags: 0

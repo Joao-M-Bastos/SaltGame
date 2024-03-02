@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  floating: 0
+  floating: 1
   rb: {fileID: 2030422301}
 --- !u!135 &2030422300
 SphereCollider:

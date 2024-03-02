@@ -7,13 +7,12 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool floating;
-    [SerializeField] Rigidbody rb;
     Vector3 playerPosition;
 
 
     public void MoveFoward()
     {
-        rb.velocity = transform.forward * speed * Time.deltaTime * 35;
+        transform.position += transform.forward * speed * Time.deltaTime;
 
         if (floating)
         {

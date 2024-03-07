@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerScrpt : MonoBehaviour
+public class PlayerScrpt : MonoBehaviour, HitCallback
 {
 
     #region References
@@ -16,7 +16,9 @@ public class PlayerScrpt : MonoBehaviour
 
     [SerializeField] GameObject saltKnightAsset;
 
-    [SerializeField] GameObject shildBox, swordBox, saltExplosionCollider;
+    BaseSword currentSword;
+
+    [SerializeField] GameObject shildBox, saltExplosionCollider;
 
     //Pointers
  
@@ -134,10 +136,7 @@ public class PlayerScrpt : MonoBehaviour
         lookingRight = !lookingRight;
     }
 
-    public void SetSwordCollider(bool value)
-    {
-        swordBox.SetActive(value);
-    }
+    
     public void SetShildCollider(bool value)
     {
         shildBox.SetActive(value);
@@ -146,8 +145,18 @@ public class PlayerScrpt : MonoBehaviour
     {
         saltExplosionCollider.SetActive(value);
     }
-    public bool GetSwordActive()
+
+    public void HitOtherCallback()
     {
-        return swordBox.activeSelf;
+
     }
+
+    #region Sword
+    public void ActivateSword()
+    {
+        currentSword.ActivateSwordCollider();
+    }
+
+
+    #endregion
 }

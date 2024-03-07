@@ -31,8 +31,8 @@ public class RightHand : MonoBehaviour
         currentSword.SetSwordStatus(raycastStartPoint, 0, 0);
     }
 
-    public void ActivateSword()
+    public void TryActivateSword()
     {
-        currentSword.ActivateSword();
+        currentSword.TryActivateSword();
     }
 }

@@ -155,9 +155,9 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     }
 
     #region Sword
-    public void ActivateSword()
+    public void TryActivateSword()
     {
-        rightHand.ActivateSword();
+        rightHand.TryActivateSword();
     }
 
 

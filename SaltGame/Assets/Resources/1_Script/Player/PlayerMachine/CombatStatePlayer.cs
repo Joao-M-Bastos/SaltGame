@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CombatStatePlayer : PlayerBaseState
 {
-    float swordCooldown;
     public void FixedState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
         
@@ -26,8 +25,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         if (Input.GetMouseButtonDown(0))
         {
-            saltKnight.ActivateSword();
-            swordCooldown = 0.2f;
+            saltKnight.TryActivateSword();
         }
     }
 }

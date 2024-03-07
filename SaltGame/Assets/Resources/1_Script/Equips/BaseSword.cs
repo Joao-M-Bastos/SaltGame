@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine.Events;
 public abstract class BaseSword : MonoBehaviour
 {
     [SerializeField] LayerMask enemyLayerMask;
+    [SerializeField] float baseCooldown;
     [SerializeField] int baseTiredness, baseSize;
+    float cooldownReductionPercentage = 100, currentCooldown;
     int tiredness, size;
+    float currentSize;
     Transform raycastStartPoint;
-    float cooldown;
 
     public delegate void HitCallback();
     public static event HitCallback onPlayerHit;
@@ -21,16 +24,37 @@ public abstract class BaseSword : MonoBehaviour
         size = baseSize + _size;
     }
 
-    public void ActivateSword()
+    public void TryActivateSword()
     {
-        Debug.DrawRay(raycastStartPoint.position, raycastStartPoint.forward * size, Color.red, 2);
-        if (Physics.Raycast(raycastStartPoint.position, raycastStartPoint.forward, out RaycastHit hit, size, enemyLayerMask) ||
-            Physics.Raycast(raycastStartPoint.position - (Vector3.down / 2), raycastStartPoint.forward, out RaycastHit hitb, size, enemyLayerMask)) {
+        if(currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime * (cooldownReductionPercentage / 100);
+            return;
+        }
 
-            onPlayerHit?.Invoke();
+        currentSize = size;
+
+        GenerateRay(raycastStartPoint.position);
+
+        currentCooldown = baseCooldown;
+    }
+
+    private void GenerateRay(Vector3 startingPosition)
+    {
+        Debug.DrawRay(startingPosition, raycastStartPoint.forward * size, Color.red, 2);
+        if (Physics.Raycast(raycastStartPoint.position, raycastStartPoint.forward, out RaycastHit hit, currentSize, enemyLayerMask))
+        {
+
+            //onPlayerHit?.Invoke();
             HitOtherCallback();
             hit.collider.gameObject.GetComponent<BaseEnemy>().KillEnemy();
-            ActivateSword();
+
+            float distance = Vector3.Distance(hit.point, raycastStartPoint.position);
+            currentSize -= distance;
+            
+
+            if(distance <= size)
+                GenerateRay(startingPosition + (raycastStartPoint.forward * distance * 1.1f));
         }
     }
 

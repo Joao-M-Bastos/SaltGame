@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a701c8696a0f842baa6fe539c1dde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastStartPoint: {fileID: 0}
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  tiredness: 0
-  size: 4
+  baseCooldown: 0
+  baseTiredness: 0
+  baseSize: 10

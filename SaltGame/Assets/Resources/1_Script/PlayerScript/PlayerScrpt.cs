@@ -16,7 +16,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     [SerializeField] GameObject saltKnightAsset;
 
-    BaseSword currentSword;
+    [SerializeField] BaseSword currentSword;
 
     [SerializeField] GameObject shildBox, saltExplosionCollider;
 

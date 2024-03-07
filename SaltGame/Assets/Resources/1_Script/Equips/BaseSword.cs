@@ -11,6 +11,7 @@ public abstract class BaseSword : MonoBehaviour
 
     public void ActivateSwordCollider()
     {
+        Debug.DrawRay(raycastStartPoint.position, raycastStartPoint.forward, Color.red ,size);
         if(Physics.Raycast(raycastStartPoint.position, raycastStartPoint.forward,out RaycastHit hit ,size, enemyLayerMask)){
             HitOtherCallback();    
             hit.collider.gameObject.GetComponent<BaseEnemy>().KillEnemy();

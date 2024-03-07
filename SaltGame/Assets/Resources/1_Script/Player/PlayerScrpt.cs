@@ -16,7 +16,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     [SerializeField] GameObject saltKnightAsset;
 
-    [SerializeField] BaseSword currentSword;
+    RightHand rightHand;
 
     [SerializeField] GameObject shildBox, saltExplosionCollider;
 
@@ -51,7 +51,10 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     void Awake()
     {
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
+        rightHand = GetComponentInChildren<RightHand>();
         currentLife = maxLife;
+
+        BaseSword.onPlayerHit += HitEnemyCallback;
     }
 
     private void OnLevelWasLoaded(int level)
@@ -146,15 +149,15 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         saltExplosionCollider.SetActive(value);
     }
 
-    public void HitOtherCallback()
+    public void HitEnemyCallback()
     {
-
+        Debug.Log("Enemy killed");
     }
 
     #region Sword
     public void ActivateSword()
     {
-        currentSword.ActivateSwordCollider();
+        rightHand.ActivateSword();
     }
 
 

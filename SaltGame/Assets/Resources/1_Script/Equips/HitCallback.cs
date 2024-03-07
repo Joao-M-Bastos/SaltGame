@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface HitCallback
 {
-    public void HitOtherCallback();
+    public void HitEnemyCallback();
 }

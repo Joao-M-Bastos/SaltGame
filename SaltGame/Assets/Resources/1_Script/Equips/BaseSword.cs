@@ -44,17 +44,16 @@ public abstract class BaseSword : MonoBehaviour
         Debug.DrawRay(startingPosition, raycastStartPoint.forward * size, Color.red, 2);
         if (Physics.Raycast(raycastStartPoint.position, raycastStartPoint.forward, out RaycastHit hit, currentSize, enemyLayerMask))
         {
-
+            //Physics.SphereCastAll
             //onPlayerHit?.Invoke();
             HitOtherCallback();
             hit.collider.gameObject.GetComponent<BaseEnemy>().KillEnemy();
 
-            float distance = Vector3.Distance(hit.point, raycastStartPoint.position);
-            currentSize -= distance;
+            
             
 
-            if(distance <= size)
-                GenerateRay(startingPosition + (raycastStartPoint.forward * distance * 1.1f));
+            //if(distance <= size)
+                //GenerateRay(startingPosition + (raycastStartPoint.forward * distance * 1.1f));
         }
     }
 

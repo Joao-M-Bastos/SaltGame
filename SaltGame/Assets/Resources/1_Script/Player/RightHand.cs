@@ -17,7 +17,7 @@ public class RightHand : MonoBehaviour
     public void SetSword(int id, string name = "")
     {
         if(id >= 0)
-            currentSword = Lists.GetSwordById(0).GetComponent<BaseSword>();
+            currentSword = Lists.GetSwordById(id).GetComponent<BaseSword>();
         else
             currentSword = Lists.GetSwordByName(name).GetComponent<BaseSword>();
 
@@ -28,7 +28,7 @@ public class RightHand : MonoBehaviour
 
     private void SetNewStatus()
     {
-        currentSword.SetSwordStatus(raycastStartPoint, 0, 0);
+        currentSword.SetSwordStatus(raycastStartPoint, 0, 0, 0);
     }
 
     public void TryActivateSword()

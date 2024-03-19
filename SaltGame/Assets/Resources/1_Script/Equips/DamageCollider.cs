@@ -1,23 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    [SerializeField] HitCallback m_HitCallback;
-    float cooldown;
-
-    private void Awake()
-    {
-        m_HitCallback = gameObject.GetComponent<HitCallback>();
-    }
+    HitCallback m_HitCallback;
+    float timeActive, attackDelay;
 
     private void Update()
     {
-        if(cooldown > 0)
+        if(attackDelay > 0)
         {
-            cooldown -= Time.deltaTime;
-            if(cooldown <= 0)
+            attackDelay -= Time.deltaTime;
+            return;
+        }
+
+        if(timeActive > 0)
+        {
+            timeActive -= Time.deltaTime;
+            if(timeActive <= 0)
                 Destroy(gameObject);
         }
     }
@@ -28,13 +30,17 @@ public class DamageCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out BaseEnemy enemy))
         {
-            //m_HitCallback.HitOtherCallback();
+            m_HitCallback.HitEnemyCallback();
             enemy.KillEnemy();
         }
     }
 
-    public void SetCooldown(float value)
+    public void SetValues(HitCallback hitCallback, Vector3 trueStartPoint, int size, float _attackDelay, float _timeActice)
     {
-        cooldown = value;
+        this.transform.position = trueStartPoint;
+        transform.localScale = new Vector3(1, 2, size);
+        m_HitCallback = hitCallback;
+        attackDelay = _attackDelay;
+        timeActive = _timeActice;
     }
 }

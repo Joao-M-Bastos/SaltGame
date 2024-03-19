@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SimpleSword : BaseSword
 {
-    public override void HitOtherCallback()
+    public override void HitEnemyCallback()
     {
-        //throw new System.NotImplementedException();
+        Debug.Log("Sword Hit enemy");
     }
 
     public override void SpecialEffect()
     {
-        //throw new System.NotImplementedException();
+        
     }
 }

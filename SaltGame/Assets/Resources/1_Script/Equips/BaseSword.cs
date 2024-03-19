@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class BaseSword : MonoBehaviour
+public abstract class BaseSword : MonoBehaviour, HitCallback
 {
     [SerializeField] LayerMask enemyLayerMask;
-    [SerializeField] float baseCooldown;
+    [SerializeField] float baseCooldown, baseAttackDelay;
     [SerializeField] int baseTiredness, baseSize;
     [SerializeField] GameObject boxCollider;
-    float cooldownReductionPercentage = 100, currentCooldown;
+    float cooldownReductionPercentage = 100, currentCooldown, attackDelay;
     int tiredness, size;
     float currentSize;
     Transform boxStartPoint;
@@ -20,18 +20,20 @@ public abstract class BaseSword : MonoBehaviour
     public delegate void HitCallback();
     public static event HitCallback onPlayerHit;
 
-    public void SetSwordStatus(Transform _raycastStartPoint, int _tiredness, int _size)
+    public void SetSwordStatus(Transform _boxStartPoint, int _tiredness, int _size, float _attackDelay)
     {
-        boxStartPoint = _raycastStartPoint;
+        boxStartPoint = _boxStartPoint;
         tiredness = baseTiredness + _tiredness;
         size = baseSize + _size;
+        attackDelay = baseAttackDelay + _attackDelay;
     }
 
     public void TryActivateSword()
     {
         if(currentCooldown > 0)
         {
-          //return;
+            currentCooldown -= Time.deltaTime * (cooldownReductionPercentage/100);
+            return;
         }
 
         currentSize = size;
@@ -39,14 +41,10 @@ public abstract class BaseSword : MonoBehaviour
         Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size/ 2);
 
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
-        currentBox.transform.position = trueStartPoint;
-        currentBox.GetComponent<DamageCollider>().SetCooldown(2f);
-        // currentCooldown = baseCooldown;
-    }
 
-    private void GenerateRay(Vector3 startingPosition)
-    {
-        
+        currentBox.GetComponent<DamageCollider>().SetValues(this ,trueStartPoint, size, attackDelay,0.2f);
+
+        currentCooldown = baseCooldown;
     }
 
     public int GetTiredness()
@@ -56,6 +54,5 @@ public abstract class BaseSword : MonoBehaviour
 
     public abstract void SpecialEffect();
 
-    public abstract void HitOtherCallback();
-
+    public abstract void HitEnemyCallback();
 }

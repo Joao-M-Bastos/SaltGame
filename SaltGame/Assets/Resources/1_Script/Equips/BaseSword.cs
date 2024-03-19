@@ -9,17 +9,20 @@ public abstract class BaseSword : MonoBehaviour
     [SerializeField] LayerMask enemyLayerMask;
     [SerializeField] float baseCooldown;
     [SerializeField] int baseTiredness, baseSize;
+    [SerializeField] GameObject boxCollider;
     float cooldownReductionPercentage = 100, currentCooldown;
     int tiredness, size;
     float currentSize;
-    Transform raycastStartPoint;
+    Transform boxStartPoint;
+
+    GameObject collision;
 
     public delegate void HitCallback();
     public static event HitCallback onPlayerHit;
 
     public void SetSwordStatus(Transform _raycastStartPoint, int _tiredness, int _size)
     {
-        raycastStartPoint = _raycastStartPoint;
+        boxStartPoint = _raycastStartPoint;
         tiredness = baseTiredness + _tiredness;
         size = baseSize + _size;
     }
@@ -28,33 +31,22 @@ public abstract class BaseSword : MonoBehaviour
     {
         if(currentCooldown > 0)
         {
-            currentCooldown -= Time.deltaTime * (cooldownReductionPercentage / 100);
-            return;
+          //return;
         }
 
         currentSize = size;
 
-        GenerateRay(raycastStartPoint.position);
+        Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size/ 2);
 
-        currentCooldown = baseCooldown;
+        GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
+        currentBox.transform.position = trueStartPoint;
+        currentBox.GetComponent<DamageCollider>().SetCooldown(2f);
+        // currentCooldown = baseCooldown;
     }
 
     private void GenerateRay(Vector3 startingPosition)
     {
-        Debug.DrawRay(startingPosition, raycastStartPoint.forward * size, Color.red, 2);
-        if (Physics.Raycast(raycastStartPoint.position, raycastStartPoint.forward, out RaycastHit hit, currentSize, enemyLayerMask))
-        {
-            //Physics.SphereCastAll
-            //onPlayerHit?.Invoke();
-            HitOtherCallback();
-            hit.collider.gameObject.GetComponent<BaseEnemy>().KillEnemy();
-
-            
-            
-
-            //if(distance <= size)
-                //GenerateRay(startingPosition + (raycastStartPoint.forward * distance * 1.1f));
-        }
+        
     }
 
     public int GetTiredness()

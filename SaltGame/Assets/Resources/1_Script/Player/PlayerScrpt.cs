@@ -59,7 +59,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     private void OnLevelWasLoaded(int level)
     {
-        foreach(LoadPlayerPosition position in FindObjectsOfType<LoadPlayerPosition>())
+        foreach(LoadPlayerPosition position in FindObjectsByType<LoadPlayerPosition>(0))
         {
             if (position.Code == nextScenePositionCode)
                 transform.position = position.transform.position;
@@ -80,7 +80,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<InteractiveEntrance>(out InteractiveEntrance entrance))
+        if (other.TryGetComponent(out InteractiveEntrance entrance))
         {
             currentEntrance = null;
             nextScenePositionCode = 0;

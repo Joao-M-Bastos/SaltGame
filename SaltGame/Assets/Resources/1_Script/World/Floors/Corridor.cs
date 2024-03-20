@@ -21,12 +21,15 @@ public class Corridor : MonoBehaviour
         loadEntrance.SetCode(currentCorridorCount * 2);
         loadExit.SetCode((currentCorridorCount * 2) + 1);
 
+        goToNextEntrance.SetNextPositionCode(1 + (currentCorridorCount * 2));
+
         if (lastCorridor)
         {
-
+            goToNextExit.SetNextPositionCode(0);
         }
         else
         {
+            goToNextExit.SetNextPositionCode((currentCorridorCount * 2) + 2);
             SetNextSceneToFalse();
         }
     }

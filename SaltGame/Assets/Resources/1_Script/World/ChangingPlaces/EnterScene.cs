@@ -20,6 +20,11 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
         return nextPositionCode;
     }
 
+    public void SetNextPositionCode(int value)
+    {
+        sceneCode = value;
+    }
+
     public void SetNextSceneToFalse()
     {
         nextScene = false;

@@ -7,12 +7,11 @@ using UnityEngine.Events;
 public abstract class BaseSword : MonoBehaviour, HitCallback
 {
     [SerializeField] LayerMask enemyLayerMask;
-    [SerializeField] float baseCooldown, baseAttackDelay;
+    [SerializeField] float baseAttackDelay, attackDelayReductionPercentage = 100;
     [SerializeField] int baseTiredness, baseSize;
     [SerializeField] GameObject boxCollider;
-    float cooldownReductionPercentage = 100, currentCooldown, attackDelay;
-    int tiredness, size;
-    float currentSize;
+    float currentAttackDelay;
+    int tiredness;
     Transform boxStartPoint;
 
     GameObject collision;
@@ -20,36 +19,36 @@ public abstract class BaseSword : MonoBehaviour, HitCallback
     public delegate void HitCallback();
     public static event HitCallback onPlayerHit;
 
-    public void SetSwordStatus(Transform _boxStartPoint, int _tiredness, int _size, float _attackDelay)
+    public void SetSwordStatus(Transform _boxStartPoint)
     {
         boxStartPoint = _boxStartPoint;
-        tiredness = baseTiredness + _tiredness;
-        size = baseSize + _size;
-        attackDelay = baseAttackDelay + _attackDelay;
     }
 
-    public void TryActivateSword()
+    public void ActivateSword(int deltaSize)
     {
-        if(currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime * (cooldownReductionPercentage/100);
-            return;
-        }
+        int currentSize = baseSize + deltaSize;
 
-        currentSize = size;
-
-        Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size/ 2);
+        Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (currentSize / 2);
 
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
+        currentBox.GetComponent<DamageCollider>().SetValues(this ,trueStartPoint, currentSize, 0.2f);
 
-        currentBox.GetComponent<DamageCollider>().SetValues(this ,trueStartPoint, size, attackDelay,0.2f);
-
-        currentCooldown = baseCooldown;
+        currentAttackDelay = baseAttackDelay;
     }
 
     public int GetTiredness()
     {
         return tiredness;
+    }
+
+    public bool IsInCooldown(float deltaReduction)
+    {
+        if (currentAttackDelay > 0)
+        {
+            currentAttackDelay -= Time.deltaTime * ((attackDelayReductionPercentage + deltaReduction) / 100);
+            return true;
+        }
+        return false;
     }
 
     public abstract void SpecialEffect();

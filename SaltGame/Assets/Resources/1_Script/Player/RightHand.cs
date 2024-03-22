@@ -28,11 +28,16 @@ public class RightHand : MonoBehaviour
 
     private void SetNewStatus()
     {
-        currentSword.SetSwordStatus(raycastStartPoint, 0, 0, 0);
+        currentSword.SetSwordStatus(raycastStartPoint);
     }
 
-    public void TryActivateSword()
+    public bool IsSwordInCooldown(float attackDelayRedution = 0)
     {
-        currentSword.TryActivateSword();
+        return currentSword.IsInCooldown(attackDelayRedution);
+    }
+
+    public void TryActivateSword(int deltaSize)
+    {
+        currentSword.ActivateSword(deltaSize);
     }
 }

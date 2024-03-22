@@ -25,7 +25,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         if (Input.GetMouseButtonDown(0))
         {
-            saltKnight.TryActivateSword();
+            saltKnight.ActivateSword();
         }
     }
 }

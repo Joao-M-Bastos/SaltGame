@@ -6,15 +6,10 @@ using UnityEngine;
 public class DamageCollider : MonoBehaviour
 {
     HitCallback m_HitCallback;
-    float timeActive, attackDelay;
+    float timeActive;
 
     private void Update()
     {
-        if(attackDelay > 0)
-        {
-            attackDelay -= Time.deltaTime;
-            return;
-        }
 
         if(timeActive > 0)
         {
@@ -35,12 +30,11 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
-    public void SetValues(HitCallback hitCallback, Vector3 trueStartPoint, int size, float _attackDelay, float _timeActice)
+    public void SetValues(HitCallback hitCallback, Vector3 trueStartPoint, int size, float _timeActice)
     {
         this.transform.position = trueStartPoint;
         transform.localScale = new Vector3(1, 2, size);
         m_HitCallback = hitCallback;
-        attackDelay = _attackDelay;
         timeActive = _timeActice;
     }
 }

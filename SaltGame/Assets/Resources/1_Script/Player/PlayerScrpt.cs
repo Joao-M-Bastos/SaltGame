@@ -24,6 +24,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
  
     public Rigidbody playerRB => rigidBody;
 
+    public RightHand rightHandRB => rightHand;
+
     public InteractiveEntrance CurrentEntrance => currentEntrance;
 
     #endregion
@@ -160,9 +162,9 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     }
 
     #region Sword
-    public void TryActivateSword()
+    public void ActivateSword()
     {
-        rightHand.TryActivateSword();
+        rightHand.TryActivateSword(0);
     }
 
 

@@ -36,7 +36,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     float dir, explosionCoolown;
 
-    int nextScenePositionCode;
+    [SerializeField] int nextScenePositionCode;
 
     //Pointers
 
@@ -59,14 +59,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     private void OnLevelWasLoaded(int level)
     {
-        foreach(LoadPlayerPosition position in FindObjectsByType<LoadPlayerPosition>(0))
-        {
-            if (position.Code == nextScenePositionCode)
-                transform.position = position.transform.position;
-        }
-
-        currentEntrance = null;
-        nextScenePositionCode = 0;
+        MovePlayerToNextPoint();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,6 +69,18 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
             currentEntrance = entrance;
             nextScenePositionCode = entrance.GetNextPositionCode();
         }
+    }
+
+    public void MovePlayerToNextPoint()
+    {
+        foreach (LoadPlayerPosition position in FindObjectsByType<LoadPlayerPosition>(0))
+        {
+            if (position.Code == nextScenePositionCode)
+                transform.position = position.transform.position;
+        }
+
+        currentEntrance = null;
+        nextScenePositionCode = 0;
     }
 
     private void OnTriggerExit(Collider other)

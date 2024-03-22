@@ -8,12 +8,6 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
     //ID da cena a carregar
     [SerializeField] int sceneCode;
     [SerializeField] int nextPositionCode;
-    bool nextScene;
-
-    private void Awake()
-    {
-        nextScene = true;
-    }
 
     public int GetNextPositionCode()
     {
@@ -22,18 +16,22 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 
     public void SetNextPositionCode(int value)
     {
+        nextPositionCode = value;
+    }
+
+    public void SetSceneCode(int value)
+    {
         sceneCode = value;
     }
 
-    public void SetNextSceneToFalse()
+    public bool GoToNextPlace()
     {
-        nextScene = false;
-    }
-
-    public void GoToNextPlace()
-    {
-        if (nextScene)
+        if (SceneManager.GetActiveScene().buildIndex != sceneCode)
+        {
             GoToNextScene();
+            return true;
+        }
+        return false;
     }
 
     public void GoToNextScene()

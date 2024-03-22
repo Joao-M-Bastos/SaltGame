@@ -9,5 +9,7 @@ public class PlayerSpawner : MonoBehaviour
     void Start()
     {
         if (GameObject.FindGameObjectsWithTag("Player").Length > 0) return;
+
+        Instantiate(PlayerPrefab, transform.position, transform.rotation);
     }
 }

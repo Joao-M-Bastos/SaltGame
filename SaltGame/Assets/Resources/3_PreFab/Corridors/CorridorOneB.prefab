@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 972332166640080750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: 1, z: 0}
+  m_LocalPosition: {x: 16.8, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,8 +265,8 @@ Transform:
   m_GameObject: {fileID: 3614992873901220946}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39999914, y: -1.74, z: 0}
-  m_LocalScale: {x: 41.1, y: 3.5, z: 2.5}
+  m_LocalPosition: {x: 6.6, y: -1.74, z: 0}
+  m_LocalScale: {x: 60.174004, y: 3.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711261844322975260}
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 4711261844322975260}
   - component: {fileID: 471123032393671228}
   m_Layer: 0
-  m_Name: CorridorOneA
+  m_Name: CorridorOneB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -596,7 +596,7 @@ Transform:
   m_GameObject: {fileID: 7744790860260925038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.099998, y: 0, z: 2}
+  m_LocalPosition: {x: 32.1, y: 0, z: 2}
   m_LocalScale: {x: 10.075058, y: 12.504705, z: 1.2504705}
   m_ConstrainProportionsScale: 0
   m_Children:

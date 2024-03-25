@@ -7,6 +7,7 @@ public class RightHand : MonoBehaviour
 {
     [SerializeField] Transform raycastStartPoint;
     BaseSword currentSword;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,9 @@ public class RightHand : MonoBehaviour
 
     public void SetSword(int id, string name = "")
     {
+        if(currentSword != null)
+            Destroy(currentSword.gameObject);
+
         if(id >= 0)
             currentSword = Lists.GetSwordById(id).GetComponent<BaseSword>();
         else

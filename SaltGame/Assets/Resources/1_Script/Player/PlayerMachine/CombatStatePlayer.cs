@@ -19,6 +19,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         Debug.Log("Exit combat state");
         saltKnight.SetShildCollider(false);
+        saltKnight.DeactivateItems();
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)
@@ -27,5 +28,17 @@ public class CombatStatePlayer : PlayerBaseState
         {
             saltKnight.ActivateSword();
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            saltKnight.ActivateItem(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            saltKnight.ActivateItem(0);
+        }
+
+        saltKnight.Rest();
     }
 }

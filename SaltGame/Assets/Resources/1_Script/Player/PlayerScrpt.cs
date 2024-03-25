@@ -17,12 +17,17 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     [SerializeField] GameObject saltKnightAsset;
 
     RightHand rightHand;
+    Backpack backpack;
 
     [SerializeField] GameObject shildBox, saltExplosionCollider;
+
+    PlayerChanges playerChanges;
 
     //Pointers
  
     public Rigidbody playerRB => rigidBody;
+
+    public GameObject SaltKnightAsset => saltKnightAsset;
 
     public RightHand rightHandRB => rightHand;
 
@@ -33,8 +38,11 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     #region Values
     [SerializeField] int maxLife;
     [SerializeField] int currentLife;
+    [SerializeField] int maxTiredness;
     [SerializeField] float speed;
-    [SerializeField] bool lookingRight;
+
+    float currentTiredness;
+    bool lookingRight = true;
 
     float dir, explosionCoolown;
 
@@ -48,13 +56,20 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public float Direction => dir;
 
+    public float CurrentTiredness => currentTiredness;
+
     #endregion
 
     void Awake()
     {
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
         rightHand = GetComponentInChildren<RightHand>();
+        backpack = GetComponentInChildren<Backpack>();
         currentLife = maxLife;
+
+        playerChanges = new PlayerChanges();
+
+        backpack.SetPlayer(this, playerChanges);
 
         BaseSword.onPlayerHit += HitEnemyCallback;
     }
@@ -161,12 +176,32 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         Debug.Log("Enemy killed");
     }
 
+    public void Rest(int value = 0)
+    {
+        if (CurrentTiredness < maxTiredness + playerChanges.GetMaxTiredness())
+        {
+            currentTiredness += value + Time.deltaTime * playerChanges.GetTirednessRecover();
+        }
+    }
+
     #region Sword
     public void ActivateSword()
     {
-        rightHand.TryActivateSword(0);
+        rightHand.TryActivateSword(playerChanges.GetAttackSize());
+    }
+    #endregion
+
+    #region Items
+
+    public void ActivateItem(int slot)
+    {
+        backpack.UseItem(slot);
     }
 
+    public void DeactivateItems()
+    {
+        backpack.DeactivateItems();
+    }
 
     #endregion
 }

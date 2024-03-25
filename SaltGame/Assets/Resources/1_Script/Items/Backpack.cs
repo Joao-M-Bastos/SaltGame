@@ -1,30 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Backpack : MonoBehaviour
 {
     [SerializeField] Transform hightThrowPoint, lowThrowPoint;
-    BaseItem currentSlotOne, currentSlotTwo;
+    BaseItem[] currentSlots;
+    PlayerChanges playerChangesInstances;
+    PlayerScrpt playerInstance;
 
     void Start()
     {
-        if (currentSlotOne == null)
-            SetItem(0, 0);
+        currentSlots = new BaseItem[2];
 
-        if (currentSlotTwo == null)
-            SetItem(1, 0);
+        SetItem(0, 0);
+        SetItem(1, 1);
+    }
+    public void SetPlayer(PlayerScrpt player, PlayerChanges playerChanges)
+    {
+        playerInstance = player;
+        playerChangesInstances = playerChanges;
     }
 
     public void SetItem(int slot,int id, string name = "")
     {
-        BaseItem item = null;
+        BaseItem item;
 
         if (id >= 0)
-            item = Lists.GetSwordById(id).GetComponent<BaseSword>();
+            item = Lists.GetItemById(id).GetComponent<BaseItem>();
         else
-            item = Lists.GetSwordByName(name).GetComponent<BaseSword>();
+            item = Lists.GetItemByName(name).GetComponent<BaseItem>();
 
-        Instantiate(currentSword.gameObject, this.transform);
+        currentSlots[slot] = item;
+        currentSlots[slot].SetPlayerChanges(playerInstance, playerChangesInstances);
     }
+
+    public void UseItem(int slot)
+    {
+        if (currentSlots[slot].HaveCostValue())
+        {
+            currentSlots[slot].Active();
+        }
+        else
+        {
+            Debug.Log("NotEnouthSouls");
+        }
+    }
+
+    public void DeactivateItems()
+    {
+        foreach (BaseItem item in currentSlots)
+        {
+            if(item.IsActive)
+                item.Deactivate();
+        }
+    }
+
 }

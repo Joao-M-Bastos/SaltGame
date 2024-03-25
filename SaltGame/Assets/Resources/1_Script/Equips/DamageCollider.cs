@@ -25,7 +25,7 @@ public class DamageCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out BaseEnemy enemy))
         {
-            m_HitCallback.HitEnemyCallback();
+            //m_HitCallback.HitEnemyCallback();
             enemy.KillEnemy();
         }
     }

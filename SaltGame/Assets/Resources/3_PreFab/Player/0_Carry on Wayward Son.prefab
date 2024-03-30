@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 8632433462523622037}
   - component: {fileID: 7622998593588198082}
   - component: {fileID: 5217343754816890326}
+  - component: {fileID: 2026131611661823968}
   m_Layer: 0
   m_Name: 0_Carry on Wayward Son
   m_TagString: Untagged
@@ -285,6 +286,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasManager: {fileID: 6463207967474543920}
+--- !u!114 &2026131611661823968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187121101988779556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a090d7d5bac7a7b49aa4d4de4ef3da14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363240892332668835
 GameObject:
   m_ObjectHideFlags: 0

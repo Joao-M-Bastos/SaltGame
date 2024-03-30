@@ -31,7 +31,7 @@ public abstract class BaseItem : MonoBehaviour
 
     public void SetBasicChanges(bool unset = false)
     {
-        Wallet.AddValue(-cost);
+        Wallet.instance.AddSoulsValue(-cost);
         currentTimeActive = timeActive;
         isActive = true;
 
@@ -67,6 +67,6 @@ public abstract class BaseItem : MonoBehaviour
 
     public bool HaveCostValue()
     {
-        return Wallet.GetCurrency() > cost;
+        return Wallet.instance.GetSouls() > cost;
     }
 }

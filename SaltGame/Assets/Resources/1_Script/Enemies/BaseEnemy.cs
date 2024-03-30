@@ -43,7 +43,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void KillEnemy()
     {
-        Wallet.AddValue(currencyValue);
+        Wallet.instance.AddSoulsValue(currencyValue);
         Die();
     }
 

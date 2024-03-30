@@ -3,18 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class Wallet
+public class Wallet : MonoBehaviour
 {
-    private static int currency;
+    public static Wallet instance;
 
-    public static int GetCurrency()
+    private int currency;
+    private int tempCurrency;
+
+    private int souls;
+
+    public void Awake()
     {
-        return currency;
+        currency = 0;
+
+        if(instance == null)
+            instance = this;
     }
 
-    public static void AddValue(int value)
+    public static Wallet GetWallet()
     {
-        currency += value;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(GetCurrency());
+        return instance;
     }
+
+    #region Currency
+
+    public int GetCurrency()
+    {
+        return currency = tempCurrency;
+    }
+
+    public void AddCurrencyValue(int value)
+    {
+        tempCurrency += value;
+    }
+
+    public void ResetCurrency()
+    {
+        tempCurrency = 0;
+    }
+
+    public void SaveCurrency()
+    {
+        currency += tempCurrency;
+        tempCurrency = 0;
+    }
+    #endregion
+
+    #region Souls
+
+    public void AddSoulsValue(int value)
+    {
+        souls += value;
+        GameManager.GetInstance().UpdadeCurrencyCanvas(GetSouls());
+    }
+
+    public int GetSouls()
+    {
+        return souls;
+    }
+
+    public void ResetSouls()
+    {
+        souls = 0;
+    }
+
+    #endregion
 }

@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Destroy(gameObject);
-        CommomMetods.GoToScene(0);
+        Wallet.instance.ResetSouls();
+        Wallet.instance.ResetCurrency();
+        CommomMetods.GoToScene(1);
     }
 }

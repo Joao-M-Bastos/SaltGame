@@ -36,6 +36,7 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 
     public void GoToNextScene()
     {
+        Wallet.instance.ResetSouls();
         CommomMetods.GoToScene(sceneCode);
     }
 }

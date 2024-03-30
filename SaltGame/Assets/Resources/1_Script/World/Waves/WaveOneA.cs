@@ -13,7 +13,15 @@ public class WaveOneA : Wave
         switch (currentRoundNumber)
         {
             case 1:
-                spawnBehaviour.GerarRound(potencialEnemies[0], 2, 2f, 0);
+                spawnBehaviour.GerarRound(potencialEnemies[0], 2, 1f, 0);
+                break;
+            case 2:
+                spawnBehaviour.GerarRound(potencialEnemies[0], 3, 0f, 0);
+                spawnBehaviour.GerarRound(potencialEnemies[0], 3, 0f, 0.5f);
+                break;
+            case 3:
+                spawnBehaviour.GerarRound(potencialEnemies[0], 4, 1f, 0);
+                spawnBehaviour.GerarRound(potencialEnemies[0], 2, 0.5f, 0.7f);
                 break;
         }
     }

@@ -7,6 +7,8 @@ public class SpawnBehaviour : MonoBehaviour
     public int amountToSpawn;
     [SerializeField] private Transform[] spawnPointTransforms;
 
+    private bool right;
+
     public void GerarRound(GameObject enemy, int amount, float inteval, float cooldown)
     {
         this.amountToSpawn += amount;
@@ -25,11 +27,19 @@ public class SpawnBehaviour : MonoBehaviour
         {
             yield return new WaitForSeconds(inteval);
             NumOfEnemiesAlive.Add();
-            this.amountToSpawn--;
             
-            int r = Random.Range(0, 2);
-            GameObject instance = Instantiate(enemy, spawnPointTransforms[r].position, spawnPointTransforms[r].rotation);
+
+            int direction = 0;
+            if (right)
+            {
+                direction = 1;
+            }
+
+            right = !right;
+
+            GameObject instance = Instantiate(enemy, spawnPointTransforms[direction].position, spawnPointTransforms[direction].rotation);
             instance.GetComponent<BaseEnemy>().SetPlayerPosition(this.transform);
+            this.amountToSpawn--;
         }
     }
 }

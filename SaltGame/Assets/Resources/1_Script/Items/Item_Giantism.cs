@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Item_Giantism : BaseItem
 {
-    private void Update()
+    public override void ItemUpdate()
     {
         if(IsActiveTimeOver())
             Deactivate();
     }
     public override void Active()
     {
+        Debug.Log("a");
         SetBasicChanges();
-        playerInstance.SaltKnightAsset.transform.localScale *= 2;
+        playerInstance.SaltKnightAsset.transform.localScale = new Vector3(2,2,2);
+        playerInstance.SaltKnightAsset.transform.localPosition = new Vector3(0, 1, 0);
     }
 
     public override void Deactivate()
     {
-        SetBasicChanges(true);
-        playerInstance.SaltKnightAsset.transform.localScale /= 2;
+        Debug.Log("b");
+        UnSetBasicChanges();
+        playerInstance.SaltKnightAsset.transform.localScale = new Vector3(1,1,1);
+        playerInstance.SaltKnightAsset.transform.localPosition = new Vector3(0, 0, 0);
     }
 }

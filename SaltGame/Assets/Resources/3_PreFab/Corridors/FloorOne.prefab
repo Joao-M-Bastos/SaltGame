@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minCorridors: 2
-  maxCorridors: 5
+  maxCorridors: 4
   listOfPossibleCorridors:
   - {fileID: 5965116075428012648, guid: aa81c753e87e82141aa129744c0b436a, type: 3}
-  corridors: []
+  - {fileID: 5965116075428012648, guid: 1a85083bb22a39343af621e1795ba1e2, type: 3}
 --- !u!1 &5041196320995236114
 GameObject:
   m_ObjectHideFlags: 0

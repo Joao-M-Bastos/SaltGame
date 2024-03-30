@@ -17,6 +17,16 @@ public class Backpack : MonoBehaviour
         SetItem(0, 0);
         SetItem(1, 1);
     }
+
+    private void Update()
+    {
+        if (currentSlots != null) {
+            foreach(BaseItem item in currentSlots)
+            {
+                item.ItemUpdate();
+            }
+        }
+    }
     public void SetPlayer(PlayerScrpt player, PlayerChanges playerChanges)
     {
         playerInstance = player;
@@ -38,6 +48,12 @@ public class Backpack : MonoBehaviour
 
     public void UseItem(int slot)
     {
+        if (currentSlots[slot].IsActive)
+        {
+            Debug.Log("Is already active");
+            return;
+        }
+
         if (currentSlots[slot].HaveCostValue())
         {
             currentSlots[slot].Active();

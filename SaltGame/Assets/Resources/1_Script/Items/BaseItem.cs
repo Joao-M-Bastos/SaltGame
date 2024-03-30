@@ -27,26 +27,26 @@ public abstract class BaseItem : MonoBehaviour
 
     public abstract void Deactivate();
 
+    public abstract void ItemUpdate();
+
     public void SetBasicChanges(bool unset = false)
     {
-        int setValue = 1;
+        Wallet.AddValue(-cost);
+        currentTimeActive = timeActive;
+        isActive = true;
 
-        if (unset)
-        {
-            setValue *= -1;
-            isActive = false;
-        }
-        else
-        {
-            Wallet.AddValue(-cost);
-            currentTimeActive = timeActive;
-            isActive = true;
-        }
-     
+        playerChangesInstance.SetAttackSize(attackSize);
+        playerChangesInstance.SetAttackSpeed(attackSpeed);
+        playerChangesInstance.SetTirednessRecover(tirednessRecover);
+    }
 
-        playerChangesInstance.SetAttackSize(attackSize * setValue);
-        playerChangesInstance.SetAttackSpeed(attackSpeed * setValue);
-        playerChangesInstance.SetTirednessRecover(tirednessRecover * setValue);
+    public void UnSetBasicChanges()
+    {
+        isActive = false;
+
+        playerChangesInstance.SetAttackSize(-attackSize);
+        playerChangesInstance.SetAttackSpeed(-attackSpeed);
+        playerChangesInstance.SetTirednessRecover(-tirednessRecover);
     }
 
     public bool IsActiveTimeOver()
@@ -67,6 +67,6 @@ public abstract class BaseItem : MonoBehaviour
 
     public bool HaveCostValue()
     {
-        return Wallet.GetCurrency() > cost && !isActive;
+        return Wallet.GetCurrency() > cost;
     }
 }

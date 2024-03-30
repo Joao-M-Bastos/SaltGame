@@ -38,10 +38,9 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     #region Values
     [SerializeField] int maxLife;
     [SerializeField] int currentLife;
-    [SerializeField] int maxTiredness;
-    [SerializeField] float speed;
+    [SerializeField] int maxTiredness, tirednessRecover;
+    [SerializeField] float currentTiredness, speed;
 
-    float currentTiredness;
     bool lookingRight = true;
 
     float dir, explosionCoolown;
@@ -120,6 +119,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
                 explosionCoolown -= Time.deltaTime;
             else SetExplosionCollider(false);
         }
+
+        Rest();
     }
 
     public void TakeAHit()
@@ -176,13 +177,26 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         Debug.Log("Enemy killed");
     }
 
-    public void Rest(int value = 0)
+    #region Tiredness
+
+    public void Rest()
     {
         if (CurrentTiredness < maxTiredness + playerChanges.GetMaxTiredness())
         {
-            currentTiredness += value + Time.deltaTime * playerChanges.GetTirednessRecover();
+            currentTiredness += (tirednessRecover + playerChanges.GetTirednessRecover()) * Time.deltaTime;
         }
     }
+
+    public void AddTiredness(int value)
+    {
+        currentTiredness -= value;
+    }
+
+    public bool HaveEnouthTiredness(int value)
+    {
+        return currentTiredness - value < 0;
+    }
+    #endregion
 
     #region Sword
     public void ActivateSword()

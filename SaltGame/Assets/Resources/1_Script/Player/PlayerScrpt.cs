@@ -120,7 +120,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
             else SetExplosionCollider(false);
         }
 
-        Rest();
+        
     }
 
     public void TakeAHit()
@@ -179,22 +179,33 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     #region Tiredness
 
+    public void FullRest()
+    {
+        currentEnergy = maxEnergy + playerChanges.GetMaxEnergy();
+    }
+
     public void Rest()
     {
         if (CurrentEnergy < maxEnergy + playerChanges.GetMaxEnergy())
-        {
-            currentEnergy += (energyRecover + playerChanges.GetEnergyRecover()) * Time.deltaTime;
-        }
+            Tired((energyRecover + playerChanges.GetEnergyRecover()) * Time.deltaTime * -1);
+        else 
+            currentEnergy = maxEnergy + playerChanges.GetMaxEnergy();
     }
 
-    public void Tired(int value)
+    public void Tired(float value)
     {
         currentEnergy -= value;
+        //hange energy Feedback
     }
 
     public bool HaveEnouthEnergy(int value)
     {
-        return currentEnergy - value > 0;
+        if (currentEnergy - value > 0)
+            return true;
+
+        //Dont have energy Feedback
+        return false;
+
     }
     #endregion
 
@@ -206,10 +217,6 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         {
             Tired(swordEnergySpend);
             rightHand.TryActivateSword(playerChanges.GetAttackSize());
-        }
-        else
-        {
-            //Not enouth energy
         }
     }
     #endregion

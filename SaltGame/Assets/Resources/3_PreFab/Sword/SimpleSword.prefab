@@ -59,8 +59,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -155,7 +153,8 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  baseCooldown: 0
-  baseTiredness: 0
-  baseSize: 2
+  baseAttackDelay: 1
+  attackDelayReductionPercentage: 100
+  energyCost: 15
+  baseSize: 1
   boxCollider: {fileID: 2585985358558312310, guid: 9c6074a9d9c2955448361b3f93e64ffe, type: 3}

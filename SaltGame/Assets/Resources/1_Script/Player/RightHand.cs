@@ -44,4 +44,9 @@ public class RightHand : MonoBehaviour
     {
         currentSword.ActivateSword(deltaSize);
     }
+
+    public int GetSwordEnergyCost()
+    {
+        return currentSword.GetEnergyCost();
+    }
 }

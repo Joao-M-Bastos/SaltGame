@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerChanges
 {
-    int maxLife, maxTiredness, attackSpeed, attackSize, tirednessRecover;
+    int maxLife, maxEnergy, attackSpeed, attackSize, energyRecover;
 
     public PlayerChanges() {
         
@@ -14,8 +14,8 @@ public class PlayerChanges
     public int GetMaxLife() { return maxLife; }
 
 
-    public void SetMaxTiredness(int value) {  maxTiredness += value; }
-    public int GetMaxTiredness() {return maxTiredness;}
+    public void SetMaxEnergy(int value) { maxEnergy += value; }
+    public int GetMaxEnergy() {return maxEnergy; }
 
     public void SetAttackSpeed(int value) { attackSpeed += value; }
     public int GetAttackSpeed() { return attackSpeed;}
@@ -24,6 +24,6 @@ public class PlayerChanges
     public int GetAttackSize() {  return attackSize;}
 
 
-    public void SetTirednessRecover(int value) { tirednessRecover += value; }
-    public int GetTirednessRecover() { return tirednessRecover; }
+    public void SetEnergyRecover(int value) { energyRecover += value; }
+    public int GetEnergyRecover() { return energyRecover; }
 }

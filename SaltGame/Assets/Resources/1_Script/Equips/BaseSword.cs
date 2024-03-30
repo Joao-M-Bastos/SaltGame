@@ -8,10 +8,9 @@ public abstract class BaseSword : MonoBehaviour, HitCallback
 {
     [SerializeField] LayerMask enemyLayerMask;
     [SerializeField] float baseAttackDelay, attackDelayReductionPercentage = 100;
-    [SerializeField] int baseTiredness, baseSize;
+    [SerializeField] int energyCost, baseSize;
     [SerializeField] GameObject boxCollider;
     float currentAttackDelay;
-    int tiredness;
     Transform boxStartPoint;
 
     GameObject collision;
@@ -36,9 +35,9 @@ public abstract class BaseSword : MonoBehaviour, HitCallback
         currentAttackDelay = baseAttackDelay;
     }
 
-    public int GetTiredness()
+    public int GetEnergyCost()
     {
-        return tiredness;
+        return energyCost;
     }
 
     public bool IsInCooldown(float deltaReduction)

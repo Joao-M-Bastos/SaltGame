@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseItem : MonoBehaviour
 {
     [SerializeField] int cost;
-    [SerializeField] int attackSpeed, tirednessRecover, attackSize;
+    [SerializeField] int attackSpeed, energyRecover, attackSize;
     [SerializeField] float timeActive;
 
     [SerializeField] bool isActive;
@@ -37,7 +37,7 @@ public abstract class BaseItem : MonoBehaviour
 
         playerChangesInstance.SetAttackSize(attackSize);
         playerChangesInstance.SetAttackSpeed(attackSpeed);
-        playerChangesInstance.SetTirednessRecover(tirednessRecover);
+        playerChangesInstance.SetEnergyRecover(energyRecover);
     }
 
     public void UnSetBasicChanges()
@@ -46,7 +46,7 @@ public abstract class BaseItem : MonoBehaviour
 
         playerChangesInstance.SetAttackSize(-attackSize);
         playerChangesInstance.SetAttackSpeed(-attackSpeed);
-        playerChangesInstance.SetTirednessRecover(-tirednessRecover);
+        playerChangesInstance.SetEnergyRecover(-energyRecover);
     }
 
     public bool IsActiveTimeOver()

@@ -38,8 +38,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     #region Values
     [SerializeField] int maxLife;
     [SerializeField] int currentLife;
-    [SerializeField] int maxTiredness, tirednessRecover;
-    [SerializeField] float currentTiredness, speed;
+    [SerializeField] int maxEnergy, energyRecover;
+    [SerializeField] float currentEnergy, speed;
 
     bool lookingRight = true;
 
@@ -55,7 +55,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public float Direction => dir;
 
-    public float CurrentTiredness => currentTiredness;
+    public float CurrentEnergy => currentEnergy;
 
     #endregion
 
@@ -181,27 +181,36 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public void Rest()
     {
-        if (CurrentTiredness < maxTiredness + playerChanges.GetMaxTiredness())
+        if (CurrentEnergy < maxEnergy + playerChanges.GetMaxEnergy())
         {
-            currentTiredness += (tirednessRecover + playerChanges.GetTirednessRecover()) * Time.deltaTime;
+            currentEnergy += (energyRecover + playerChanges.GetEnergyRecover()) * Time.deltaTime;
         }
     }
 
-    public void AddTiredness(int value)
+    public void Tired(int value)
     {
-        currentTiredness -= value;
+        currentEnergy -= value;
     }
 
-    public bool HaveEnouthTiredness(int value)
+    public bool HaveEnouthEnergy(int value)
     {
-        return currentTiredness - value < 0;
+        return currentEnergy - value > 0;
     }
     #endregion
 
     #region Sword
     public void ActivateSword()
     {
-        rightHand.TryActivateSword(playerChanges.GetAttackSize());
+        int swordEnergySpend = rightHand.GetSwordEnergyCost();
+        if (HaveEnouthEnergy(swordEnergySpend))
+        {
+            Tired(swordEnergySpend);
+            rightHand.TryActivateSword(playerChanges.GetAttackSize());
+        }
+        else
+        {
+            //Not enouth energy
+        }
     }
     #endregion
 

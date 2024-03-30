@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bfd127cd26c5d4ba0d21ca6a5f2bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 1
-  attackSpeed: -2
-  tirednessRecover: 2
+  cost: 10
+  attackSpeed: 1
+  energyRecover: 0
   attackSize: 3
-  timeActive: 2
+  timeActive: 5
+  isActive: 0

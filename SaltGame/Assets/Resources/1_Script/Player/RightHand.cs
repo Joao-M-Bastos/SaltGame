@@ -40,9 +40,9 @@ public class RightHand : MonoBehaviour
         return currentSword.IsInCooldown(attackDelayRedution);
     }
 
-    public void TryActivateSword(int deltaSize)
+    public void TryActivateSword(int deltaSize, float deltaAttackSpeed)
     {
-        currentSword.ActivateSword(deltaSize);
+        currentSword.ActivateSword(deltaSize, deltaAttackSpeed);
     }
 
     public int GetSwordEnergyCost()

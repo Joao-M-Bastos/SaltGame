@@ -23,7 +23,7 @@ public abstract class BaseSword : MonoBehaviour, HitCallback
         boxStartPoint = _boxStartPoint;
     }
 
-    public void ActivateSword(int deltaSize)
+    public void ActivateSword(int deltaSize, float deltaAttackSpeed)
     {
         int currentSize = baseSize + deltaSize;
 
@@ -32,7 +32,7 @@ public abstract class BaseSword : MonoBehaviour, HitCallback
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
         currentBox.GetComponent<DamageCollider>().SetValues(this ,trueStartPoint, currentSize, 0.2f);
 
-        currentAttackDelay = baseAttackDelay;
+        currentAttackDelay = baseAttackDelay + deltaAttackSpeed;
     }
 
     public int GetEnergyCost()

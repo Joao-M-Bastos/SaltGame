@@ -10,6 +10,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     #region References
 
+    
+
     [SerializeField] Rigidbody rigidBody;
 
     private InteractiveEntrance currentEntrance;
@@ -22,6 +24,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     [SerializeField] GameObject shildBox, saltExplosionCollider;
 
     PlayerChanges playerChanges;
+    PlayerMachineController playerMachineController;
 
     //Pointers
  
@@ -64,7 +67,10 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
         rightHand = GetComponentInChildren<RightHand>();
         backpack = GetComponentInChildren<Backpack>();
+        playerMachineController = GetComponentInChildren<PlayerMachineController>();
+
         currentLife = maxLife;
+        GameManager.GetInstance().UpdateLifeText(currentLife);
 
         playerChanges = new PlayerChanges();
 
@@ -119,8 +125,6 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
                 explosionCoolown -= Time.deltaTime;
             else SetExplosionCollider(false);
         }
-
-        
     }
 
     public void TakeAHit()
@@ -132,6 +136,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     private void LoseLife(int value)
     {
         currentLife -= value;
+        GameManager.GetInstance().UpdateLifeText(currentLife);
     }
 
     public void SaltExplosion()
@@ -162,11 +167,11 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         lookingRight = !lookingRight;
     }
 
-    
     public void SetShildCollider(bool value)
     {
         shildBox.SetActive(value);
     }
+
     public void SetExplosionCollider(bool value)
     {
         saltExplosionCollider.SetActive(value);
@@ -216,7 +221,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         if (HaveEnouthEnergy(swordEnergySpend))
         {
             Tired(swordEnergySpend);
-            rightHand.TryActivateSword(playerChanges.GetAttackSize());
+            rightHand.TryActivateSword(playerChanges.GetAttackSize(), playerChanges.GetAttackSpeed());
         }
     }
     #endregion

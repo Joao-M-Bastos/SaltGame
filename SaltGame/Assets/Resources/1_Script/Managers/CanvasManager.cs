@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] Text textBox;
-    public void UpdadeCurrencyText(int currentValue)
+    [SerializeField] Text soulsText, lifeText;
+    public void UpdadeSoulsText(int currentValue)
     {
-        textBox.text = currentValue.ToString();
+        soulsText.text = currentValue.ToString();
+    }
+
+    public void UpdadeLifeText(int currentValue)
+    {
+        lifeText.text = currentValue.ToString();
     }
 }

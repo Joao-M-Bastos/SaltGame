@@ -13,6 +13,13 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit();
+        }
+    }
+
     private void Awake()
     {
         if(instance == null)
@@ -23,6 +30,21 @@ public class GameManager : MonoBehaviour
 
     public void UpdadeCurrencyCanvas(int currentValue)
     {
-        canvasManager.UpdadeCurrencyText(currentValue);
+        canvasManager.UpdadeSoulsText(currentValue);
+    }
+
+    public void UpdateLifeText(int lifeValue)
+    {
+        canvasManager.UpdadeLifeText(lifeValue);
+        if (lifeValue <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        Destroy(gameObject);
+        CommomMetods.GoToScene(0);
     }
 }

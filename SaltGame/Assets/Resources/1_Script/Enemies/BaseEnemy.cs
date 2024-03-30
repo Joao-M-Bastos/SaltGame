@@ -8,6 +8,8 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] int currencyValue;
     [SerializeField] bool floating;
+
+    bool alreadyDead;
     Transform playerTransform;
 
     public void SetPlayerPosition(Transform _playerTransform)
@@ -47,6 +49,10 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void Die()
     {
+        if (alreadyDead == true)
+            return;
+
+        alreadyDead = true;
         OnDie();
         NumOfEnemiesAlive.Subtract();
         Destroy(this.gameObject);

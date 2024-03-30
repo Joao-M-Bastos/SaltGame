@@ -69,14 +69,19 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         backpack = GetComponentInChildren<Backpack>();
         playerMachineController = GetComponentInChildren<PlayerMachineController>();
 
-        currentLife = maxLife;
-        GameManager.GetInstance().UpdateLifeText(currentLife);
-
         playerChanges = new PlayerChanges();
 
         backpack.SetPlayer(this, playerChanges);
 
         BaseSword.onPlayerHit += HitEnemyCallback;
+
+        SetValues();
+    }
+
+    public void SetValues()
+    {
+        currentLife = maxLife;
+        GameManager.GetInstance().UpdateLife(currentLife);
     }
 
     private void OnLevelWasLoaded(int level)
@@ -136,7 +141,13 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     private void LoseLife(int value)
     {
         currentLife -= value;
-        GameManager.GetInstance().UpdateLifeText(currentLife);
+        GameManager.GetInstance().UpdateLife(currentLife);
+
+        if(currentLife <= 0)
+        {
+            SetValues();
+            playerMachineController.ChangeState(playerMachineController.movingState);
+        }
     }
 
     public void SaltExplosion()

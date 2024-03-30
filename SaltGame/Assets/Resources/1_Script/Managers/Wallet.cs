@@ -65,6 +65,7 @@ public class Wallet : MonoBehaviour
     public void ResetSouls()
     {
         souls = 0;
+        GameManager.GetInstance().UpdadeCurrencyCanvas(GetSouls());
     }
 
     #endregion

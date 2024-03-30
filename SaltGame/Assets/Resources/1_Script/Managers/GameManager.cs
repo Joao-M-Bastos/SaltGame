@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         canvasManager.UpdadeSoulsText(currentValue);
     }
 
-    public void UpdateLifeText(int lifeValue)
+    public void UpdateLife(int lifeValue)
     {
         canvasManager.UpdadeLifeText(lifeValue);
         if (lifeValue <= 0)

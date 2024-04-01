@@ -6,6 +6,7 @@ public abstract class Wave : MonoBehaviour
 {
     [SerializeField] protected GameObject[] potencialEnemies;
     [SerializeField] int quantityOfRounds;
+    [SerializeField] int currencyValue;
 
     protected int currentRoundNumber;
 
@@ -43,6 +44,7 @@ public abstract class Wave : MonoBehaviour
 
     private void FinishWave()
     {
+        Wallet.instance.AddCurrencyValue(currencyValue);
         playerMachineController.ChangeState(playerMachineController.movingState);
         Destroy(this.gameObject);
     }

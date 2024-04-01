@@ -35,17 +35,20 @@ public class Wallet : MonoBehaviour
     public void AddCurrencyValue(int value)
     {
         tempCurrency += value;
+        Debug.Log(tempCurrency + " : " + currency);
     }
 
     public void ResetCurrency()
     {
         tempCurrency = 0;
+        Debug.Log(tempCurrency + " : " + currency);
     }
 
     public void SaveCurrency()
     {
         currency += tempCurrency;
         tempCurrency = 0;
+        Debug.Log(tempCurrency + " : " + currency);
     }
     #endregion
 

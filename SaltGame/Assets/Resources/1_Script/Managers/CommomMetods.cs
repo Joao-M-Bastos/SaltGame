@@ -8,6 +8,7 @@ public static class CommomMetods
 {
     public static void GoToScene(int sceneID)
     {
+        
         SceneManager.LoadScene(sceneID);
     }
 }

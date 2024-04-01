@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 10
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,12 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,6 +67,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -133,8 +137,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: listOfPossibleCorridors.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: listOfPossibleCorridors.Array.data[1]
+      value: 
+      objectReference: {fileID: 5965116075428012648, guid: 1a85083bb22a39343af621e1795ba1e2, type: 3}
+    - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: listOfPossibleCorridors.Array.data[2]
+      value: 
+      objectReference: {fileID: 5965116075428012648, guid: cd45b11e87b715d4f920b084ed4abeac, type: 3}
     - target: {fileID: 7663411803248259642, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

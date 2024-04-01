@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Corridor : MonoBehaviour
 {
@@ -21,6 +23,24 @@ public class Corridor : MonoBehaviour
 
         goToNextEntrance.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
         goToNextExit.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
+
+        GenerateRandomWaveAmount();
+    }
+
+    private void GenerateRandomWaveAmount()
+    {
+        int waveAmount = Random.Range(0,waveCaller.Length) + 1;
+
+        while(waveAmount > 0)
+        {
+            int randomWave = Random.Range(0, waveCaller.Length);
+
+            if (waveCaller[randomWave].isActiveAndEnabled)
+            {
+                waveAmount--;
+                waveCaller[randomWave].gameObject.SetActive(true);
+            }
+        }
     }
 
     public void FirstCorridor()

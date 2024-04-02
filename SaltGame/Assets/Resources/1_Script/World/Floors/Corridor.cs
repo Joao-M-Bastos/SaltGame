@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Corridor : MonoBehaviour
 {
-    [SerializeField] WaveCaller[] waveCaller;
+    [SerializeField] WaveCaller[] waveCallers;
     [SerializeField] EnterScene goToNextEntrance, goToNextExit;
     [SerializeField] LoadPlayerPosition loadEntrance, loadExit;
 
@@ -29,16 +29,16 @@ public class Corridor : MonoBehaviour
 
     private void GenerateRandomWaveAmount()
     {
-        int waveAmount = Random.Range(0,waveCaller.Length) + 1;
+        int waveAmount = Random.Range(0,waveCallers.Length) + 1;
 
         while(waveAmount > 0)
         {
-            int randomWave = Random.Range(0, waveCaller.Length);
+            int randomWave = Random.Range(0, waveCallers.Length);
 
-            if (waveCaller[randomWave].isActiveAndEnabled)
+            if (waveCallers[randomWave].isActiveAndEnabled)
             {
                 waveAmount--;
-                waveCaller[randomWave].gameObject.SetActive(true);
+                waveCallers[randomWave].gameObject.SetActive(true);
             }
         }
     }

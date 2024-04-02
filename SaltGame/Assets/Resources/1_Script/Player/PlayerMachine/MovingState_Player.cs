@@ -35,16 +35,18 @@ public class MovingState_Player : PlayerBaseState
     {
         if (saltKnight.CurrentEntrance != null && Input.GetKeyDown(KeyCode.Space))
         {
-            
+            saltKnight.playerRB.velocity = Vector3.zero;
             if (!saltKnight.CurrentEntrance.GoToNextPlace())
             {
-                saltKnight.MovePlayerToNextPoint();
+                saltKnight.StartCoroutine(saltKnight.ChangePlace());
             }
         }
             
 
         TryChangeState();
     }
+
+    
 
     private void TryChangeState()
     {

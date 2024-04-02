@@ -28,10 +28,17 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
     {
         if (SceneManager.GetActiveScene().buildIndex != sceneCode)
         {
-            GoToNextScene();
+            StartCoroutine(ChangeScene());
             return true;
         }
         return false;
+    }
+    public IEnumerator ChangeScene()
+    {
+        Camera.main.GetComponent<Animator>().SetInteger("Fade", 1);
+        yield return new WaitForSeconds(1f);
+        Camera.main.GetComponent<Animator>().SetInteger("Fade", 0);
+        GoToNextScene();
     }
 
     public void GoToNextScene()

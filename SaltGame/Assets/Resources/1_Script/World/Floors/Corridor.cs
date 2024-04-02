@@ -29,6 +29,9 @@ public class Corridor : MonoBehaviour
 
     private void GenerateRandomWaveAmount()
     {
+        if (waveCallers.Length == 0)
+            return;
+
         int waveAmount = Random.Range(0,waveCallers.Length) + 1;
 
         while(waveAmount > 0)

@@ -32,7 +32,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public GameObject SaltKnightAsset => saltKnightAsset;
 
-    public RightHand rightHandRB => rightHand;
+    public RightHand RightHand => rightHand;
 
     public InteractiveEntrance CurrentEntrance => currentEntrance;
 
@@ -154,6 +154,14 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     {
         explosionCoolown = 0.1f;
         SetExplosionCollider(true);
+    }
+
+    public IEnumerator ChangePlace()
+    {
+        Camera.main.GetComponent<Animator>().SetInteger("Fade", 1);
+        yield return new WaitForSeconds(1f);
+        Camera.main.GetComponent<Animator>().SetInteger("Fade", 0);
+        MovePlayerToNextPoint();
     }
 
     private bool CanFlip()

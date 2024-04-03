@@ -11,9 +11,11 @@ public class Corridor : MonoBehaviour
     [SerializeField] EnterScene goToNextEntrance, goToNextExit;
     [SerializeField] LoadPlayerPosition loadEntrance, loadExit;
 
+    [SerializeField] Transform extraCorridorPoint;
+
     public void GenerateCorridor(int currentCorridorCount)
     {
-        transform.position += new Vector3(100 * currentCorridorCount, 0, 8.5f);
+        transform.position += new Vector3(300 * currentCorridorCount, 0, 8.5f);
         
         loadEntrance.SetCode(currentCorridorCount * 2);
         loadExit.SetCode((currentCorridorCount * 2) + 1);
@@ -38,12 +40,17 @@ public class Corridor : MonoBehaviour
         {
             int randomWave = Random.Range(0, waveCallers.Length);
 
-            if (waveCallers[randomWave].isActiveAndEnabled)
+            if (!waveCallers[randomWave].isActiveAndEnabled)
             {
                 waveAmount--;
                 waveCallers[randomWave].gameObject.SetActive(true);
             }
         }
+    }
+
+    public void GenerateExtraCorridor(GameObject extraCorridor)
+    {
+        Instantiate(extraCorridor, extraCorridorPoint.transform.position, extraCorridor.transform.rotation);
     }
 
     public void FirstCorridor()

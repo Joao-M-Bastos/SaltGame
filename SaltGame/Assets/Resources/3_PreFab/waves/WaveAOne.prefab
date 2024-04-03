@@ -129,3 +129,4 @@ MonoBehaviour:
   - {fileID: 6954950833531211088, guid: 713fdf5801ada1640be47662f64b08b7, type: 3}
   - {fileID: 6954950833531211088, guid: a1e5b7dbd53b2fe4ab723b3501971330, type: 3}
   quantityOfRounds: 3
+  currencyValue: 2

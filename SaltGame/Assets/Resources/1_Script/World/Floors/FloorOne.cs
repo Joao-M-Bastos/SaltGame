@@ -10,6 +10,7 @@ public class FloorOne : MonoBehaviour
 
     [SerializeField] int minCorridors, maxCorridors;
     [SerializeField] GameObject[] listOfPossibleCorridors;
+    [SerializeField] GameObject secretChestCorridor, safePointCorridor;
     Corridor[] corridors;
 
     private void Awake()
@@ -31,6 +32,8 @@ public class FloorOne : MonoBehaviour
         }
         corridors[0].FirstCorridor();
         corridors[corridorsAmount - 1].LastCorridor();
+
+        corridors[Random.Range(0, corridorsAmount)].GenerateExtraCorridor(secretChestCorridor);
 
         playerTransform.position = corridors[0].GetEntrancePosition();
     }

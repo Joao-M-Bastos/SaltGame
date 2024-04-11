@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnterScene : MonoBehaviour, InteractiveEntrance
 {
@@ -26,7 +25,7 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 
     public bool GoToNextPlace()
     {
-        if (SceneManager.GetActiveScene().buildIndex != sceneCode)
+        if (CommomMetods.GetScene() != sceneCode)
         {
             StartCoroutine(ChangeScene());
             return true;

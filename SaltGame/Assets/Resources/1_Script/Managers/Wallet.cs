@@ -29,7 +29,12 @@ public class Wallet : MonoBehaviour
 
     public int GetCurrency()
     {
-        return currency = tempCurrency;
+        return currency + tempCurrency;
+    }
+
+    public int GetTempCurrency()
+    {
+        return tempCurrency;
     }
 
     public void AddCurrencyValue(int value)

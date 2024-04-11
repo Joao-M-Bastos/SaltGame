@@ -11,4 +11,9 @@ public static class CommomMetods
         
         SceneManager.LoadScene(sceneID);
     }
+
+    public static int GetScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }

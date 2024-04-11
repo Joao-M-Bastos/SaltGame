@@ -9,20 +9,11 @@ public class Save
     public int currencyNum;
     public int tempCurrencyNum;
 
-    public int playerPosition;
+    public float playerPosition;
     public int playerScene;
 
     public int playerTiredness;
     public int playerLife;
 
-    public int enemyCount;
-
-    public int enemyOnePosition;
-    public int enemyTwoPosition;
-    public int enemyThreePosition;
-    public int enemyFourPosition;
-    public int enemyFivePosition;
-    public int enemySixPosition;
-
-    
+    public List<float> enemyPosition = new List<float>();
 }

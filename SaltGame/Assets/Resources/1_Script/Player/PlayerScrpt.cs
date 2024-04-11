@@ -57,6 +57,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public float CurrentEnergy => currentEnergy;
 
+    public int CurrentLife => currentLife;
+
     #endregion
 
     void Awake()
@@ -216,7 +218,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     public void Tired(float value)
     {
         currentEnergy -= value;
-        //hange energy Feedback
+        //spend energy Feedback
     }
 
     public bool HaveEnouthEnergy(int value)
@@ -228,6 +230,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         return false;
 
     }
+
     #endregion
 
     #region Sword

@@ -40,7 +40,24 @@ public class SaveManager : MonoBehaviour
     {
         Save save = CreateSaveObj();
 
-        
+        XmlDocument xmlDocument = new XmlDocument();
+
+        #region Xml Elements
+
+        XmlElement root = xmlDocument.CreateElement("Save");
+        root.SetAttribute("File Name", "File_01");
+
+        XmlElement soulsElement = xmlDocument.CreateElement("SoulsNumber");
+        soulsElement.InnerText = save.soulsNum.ToString();
+        root.AppendChild(soulsElement);
+
+        #endregion
+
+        xmlDocument.Save(Application.dataPath + "/DataXML.text");
+        if(File.Exists(Application.dataPath + "/DataXML.text"))
+        {
+            Debug.Log("XML Saved");
+        }
     }
 
     public void LoadByXLM()

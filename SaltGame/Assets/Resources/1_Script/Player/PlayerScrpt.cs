@@ -7,10 +7,7 @@ using UnityEngine;
 
 public class PlayerScrpt : MonoBehaviour, HitCallback
 {
-
     #region References
-
-    
 
     [SerializeField] Rigidbody rigidBody;
 

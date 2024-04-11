@@ -16,7 +16,14 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            Application.Quit();
+            if(canvasManager.CurrentCanvasState == CanvasStates.InGame)
+            {
+                canvasManager.ChangeCanvas(CanvasStates.PauseMenu);
+            }
+            else
+            {
+                canvasManager.ChangeCanvas(CanvasStates.InGame);
+            }
         }
     }
 
@@ -28,9 +35,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdadeCurrencyCanvas(int currentValue)
+    public void UpdadeSoulsCanvas(int currentValue)
     {
         canvasManager.UpdadeSoulsText(currentValue);
+    }
+
+    public void UpdadeCurrencyCanvas(int currentValue, int tempValue)
+    {
+        canvasManager.UpdateCurrencyText(currentValue, tempValue);
     }
 
     public void UpdateLife(int lifeValue)

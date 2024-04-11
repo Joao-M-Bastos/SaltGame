@@ -8,6 +8,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] int currencyValue;
     [SerializeField] bool floating;
+    [SerializeField] GameObject body;
 
     bool alreadyDead;
     Transform playerTransform;
@@ -24,7 +25,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
         if (floating)
         {
-            transform.Translate(transform.up / 100 * Mathf.Sin(Time.time * speed * 2));
+            body.transform.Translate(transform.up / 100 * Mathf.Sin(Time.time * speed * 2));
         }
     }
 

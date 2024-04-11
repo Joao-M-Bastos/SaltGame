@@ -136,21 +136,25 @@ PrefabInstance:
       value: FloorOne
       objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: maxCorridors
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: secretChestCorridor
       value: 
       objectReference: {fileID: 5965116075428012648, guid: 935b24064de32154f99bf128af5b1a53, type: 3}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: listOfPossibleCorridors.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: listOfPossibleCorridors.Array.data[1]
       value: 
-      objectReference: {fileID: 5965116075428012648, guid: 1a85083bb22a39343af621e1795ba1e2, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: listOfPossibleCorridors.Array.data[2]
       value: 
-      objectReference: {fileID: 5965116075428012648, guid: cd45b11e87b715d4f920b084ed4abeac, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7663411803248259642, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

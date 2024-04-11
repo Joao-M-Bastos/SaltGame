@@ -35,20 +35,20 @@ public class Wallet : MonoBehaviour
     public void AddCurrencyValue(int value)
     {
         tempCurrency += value;
-        Debug.Log(tempCurrency + " : " + currency);
+        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
     }
 
     public void ResetCurrency()
     {
         tempCurrency = 0;
-        Debug.Log(tempCurrency + " : " + currency);
+        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
     }
 
     public void SaveCurrency()
     {
         currency += tempCurrency;
         tempCurrency = 0;
-        Debug.Log(tempCurrency + " : " + currency);
+        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
     }
     #endregion
 
@@ -57,7 +57,7 @@ public class Wallet : MonoBehaviour
     public void AddSoulsValue(int value)
     {
         souls += value;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(GetSouls());
+        GameManager.GetInstance().UpdadeSoulsCanvas(GetSouls());
     }
 
     public int GetSouls()
@@ -68,7 +68,7 @@ public class Wallet : MonoBehaviour
     public void ResetSouls()
     {
         souls = 0;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(GetSouls());
+        GameManager.GetInstance().UpdadeSoulsCanvas(GetSouls());
     }
 
     #endregion

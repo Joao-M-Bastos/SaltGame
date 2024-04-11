@@ -67,8 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleWaves:
-  - {fileID: 5265347744215428660, guid: 3d31a6a9256a59b419f87134c7b45ac4, type: 3}
-  - {fileID: 5265347744215428660, guid: 3d31a6a9256a59b419f87134c7b45ac4, type: 3}
+  - {fileID: 486621811136574261, guid: 1eb65f4af75afd14d8ca620474123b41, type: 3}
   waveIndexValue: 0
 --- !u!1 &1214464273898005060
 GameObject:

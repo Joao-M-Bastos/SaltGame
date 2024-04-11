@@ -37,7 +37,11 @@ public class SpawnBehaviour : MonoBehaviour
 
             right = !right;
 
-            GameObject instance = Instantiate(enemy, spawnPointTransforms[direction].position, spawnPointTransforms[direction].rotation);
+            GameObject instance = Instantiate(enemy,
+
+                spawnPointTransforms[direction].position - spawnPointTransforms[direction].forward * 3 * amountToSpawn, 
+                
+                spawnPointTransforms[direction].rotation);
             instance.GetComponent<BaseEnemy>().SetPlayerPosition(this.transform);
             this.amountToSpawn--;
         }

@@ -12,7 +12,7 @@ public class Save
     public float playerPosition;
     public int playerScene;
 
-    public int playerTiredness;
+    public int playerEnergy;
     public int playerLife;
 
     public List<float> enemyPosition = new List<float>();

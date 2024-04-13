@@ -6,11 +6,11 @@ using System.Xml;
 
 public class SaveManager : MonoBehaviour
 {
-    PlayerScrpt player;
+    [SerializeField]PlayerScrpt player;
 
     private void Start()
     {
-        player = GetComponent<PlayerScrpt>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScrpt>();
     }
 
     private Save CreateSaveObj() { 
@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour
         save.playerScene = CommomMetods.GetScene();
 
         save.playerLife = player.CurrentLife;
-        save.playerTiredness = (int)player.CurrentEnergy;
+        save.playerEnergy = (int)player.CurrentEnergy;
 
         BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
         
@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
         return save;
     }
 
-    private void SaveByXLM()
+    public void SaveByXLM()
     {
         Save save = CreateSaveObj();
 
@@ -45,13 +45,39 @@ public class SaveManager : MonoBehaviour
         #region Xml Elements
 
         XmlElement root = xmlDocument.CreateElement("Save");
-        root.SetAttribute("File Name", "File_01");
+        root.SetAttribute("FileName", "File_01");
 
         XmlElement soulsElement = xmlDocument.CreateElement("SoulsNumber");
         soulsElement.InnerText = save.soulsNum.ToString();
         root.AppendChild(soulsElement);
 
+        XmlElement currencyElement = xmlDocument.CreateElement("CurrencyNumber");
+        currencyElement.InnerText = save.currencyNum.ToString();
+        root.AppendChild(currencyElement);
+
+        XmlElement tempCurrencyElement = xmlDocument.CreateElement("TempCurrencyNumber");
+        tempCurrencyElement.InnerText = save.tempCurrencyNum.ToString();
+        root.AppendChild(tempCurrencyElement);
+
+        XmlElement playerPositionElement = xmlDocument.CreateElement("PlayerPositionNumber");
+        playerPositionElement.InnerText = save.playerPosition.ToString();
+        root.AppendChild(playerPositionElement);
+
+        XmlElement playerSceneElement = xmlDocument.CreateElement("SceneNumber");
+        playerSceneElement.InnerText = save.playerScene.ToString();
+        root.AppendChild(playerSceneElement);
+
+        XmlElement energyElement = xmlDocument.CreateElement("EnergyNumber");
+        energyElement.InnerText = save.playerEnergy.ToString();
+        root.AppendChild(energyElement);
+
+        XmlElement lifeElement = xmlDocument.CreateElement("LifeNumber");
+        lifeElement.InnerText = save.playerLife.ToString();
+        root.AppendChild(lifeElement);
+
         #endregion
+
+        xmlDocument.AppendChild(root);
 
         xmlDocument.Save(Application.dataPath + "/DataXML.text");
         if(File.Exists(Application.dataPath + "/DataXML.text"))

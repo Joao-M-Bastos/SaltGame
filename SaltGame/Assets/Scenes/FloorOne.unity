@@ -152,6 +152,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: minCorridors
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: secretChestCorridor
       value: 
       objectReference: {fileID: 5965116075428012648, guid: 935b24064de32154f99bf128af5b1a53, type: 3}

@@ -21,7 +21,7 @@ public class SaveManager : MonoBehaviour
         save.tempCurrencyNum = Wallet.GetWallet().GetTempCurrency();
 
         save.playerPosition = player.transform.position.x;
-        save.playerScene = CommomMetods.GetScene();
+        save.playerScene = CommomMetods.GetSceneCode();
 
         save.playerLife = player.CurrentLife;
         save.playerEnergy = (int)player.CurrentEnergy;
@@ -184,7 +184,11 @@ public class SaveManager : MonoBehaviour
 
             //Load Player Values
 
+            Camera.main.GetComponent<Animator>().SetTrigger("ReFade");
+
             CommomMetods.GoToScene(save.playerScene);
+
+            GameManager.GetInstance().SetLoadedInScene(true);
 
             player.transform.position = new Vector3(save.playerPosition, 0.6f, 0);
 

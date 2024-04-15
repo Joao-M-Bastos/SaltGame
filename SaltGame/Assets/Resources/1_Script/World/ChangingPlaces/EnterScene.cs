@@ -25,7 +25,7 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
 
     public bool GoToNextPlace()
     {
-        if (CommomMetods.GetScene() != sceneCode)
+        if (CommomMetods.GetSceneCode() != sceneCode)
         {
             StartCoroutine(ChangeScene());
             return true;

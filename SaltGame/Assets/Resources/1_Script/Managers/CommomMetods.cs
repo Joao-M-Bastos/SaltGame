@@ -10,9 +10,13 @@ public static class CommomMetods
     {
         
         SceneManager.LoadScene(sceneID);
+        GameManager.GetInstance().ResetDestroyedWaveNum();
+        GameManager.GetInstance().SetLoadedInScene(false);
+
+        //Salvar esse valor numDestroyedNum, reduzir na quantidade de ondas nos corredores durante o load
     }
 
-    public static int GetScene()
+    public static int GetSceneCode()
     {
         return SceneManager.GetActiveScene().buildIndex;
     }

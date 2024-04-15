@@ -45,6 +45,7 @@ public abstract class Wave : MonoBehaviour
     private void FinishWave()
     {
         Wallet.instance.AddCurrencyValue(currencyValue);
+        GameManager.GetInstance().AddDestroyedWave();
         playerMachineController.ChangeState(playerMachineController.movingState);
         Destroy(this.gameObject);
     }

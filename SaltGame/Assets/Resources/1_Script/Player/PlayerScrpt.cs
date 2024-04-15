@@ -61,7 +61,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     #endregion
 
-    void Awake()
+    void Start()
     {
         FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
         rightHand = GetComponentInChildren<RightHand>();
@@ -86,7 +86,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     private void OnLevelWasLoaded(int level)
     {
-        MovePlayerToNextPoint();
+        if (!GameManager.GetInstance().IsLoadedInScene())
+            MovePlayerToNextPoint();
     }
 
     private void OnTriggerEnter(Collider other)

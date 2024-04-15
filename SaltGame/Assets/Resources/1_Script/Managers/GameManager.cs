@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     static GameManager instance;
 
-    [SerializeField] CanvasManager canvasManager;
+    bool loadedInScene;
+    int numOfWavesDestroyed;
 
     public static GameManager GetInstance()
     {        
@@ -26,5 +27,25 @@ public class GameManager : MonoBehaviour
         Wallet.instance.ResetSouls();
         Wallet.instance.ResetCurrency();
         CommomMetods.GoToScene(1);
+    }
+
+    public bool IsLoadedInScene()
+    {
+        return loadedInScene;
+    }
+
+    public void SetLoadedInScene(bool value)
+    {
+        loadedInScene = value;
+    }
+
+    public void AddDestroyedWave()
+    {
+        numOfWavesDestroyed++;
+    }
+
+    public void ResetDestroyedWaveNum()
+    {
+        numOfWavesDestroyed = 0;
     }
 }

@@ -34,6 +34,7 @@ public class FloorOne : MonoBehaviour
 
         corridors[Random.Range(0, corridorsAmount)].GenerateExtraCorridor(secretChestCorridor);
 
-        playerTransform.position = corridors[0].GetEntrancePosition();
+        if(!GameManager.GetInstance().IsLoadedInScene())
+            playerTransform.position = corridors[0].GetEntrancePosition();
     }
 }

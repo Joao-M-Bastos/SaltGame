@@ -135,6 +135,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorOne
       objectReference: {fileID: 0}
+    - target: {fileID: 2164132548085733495, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164132548085733495, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164132548085733495, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3050427038565656535, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: maxCorridors
       value: 3
@@ -165,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7663411803248259642, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663411803248259642, guid: fbd0399db20e3ab4d99c6df5ebd38600, type: 3}
       propertyPath: m_LocalRotation.w

@@ -15,7 +15,7 @@ public class Corridor : MonoBehaviour
 
     public void GenerateCorridor(int currentCorridorCount)
     {
-        transform.position += new Vector3(0, 300 * currentCorridorCount, 8.5f);
+        transform.position += new Vector3(0, 100 * currentCorridorCount, 0);
         
         loadEntrance.SetCode(currentCorridorCount * 2);
         loadExit.SetCode((currentCorridorCount * 2) + 1);

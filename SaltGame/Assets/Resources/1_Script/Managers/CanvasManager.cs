@@ -17,6 +17,37 @@ public class CanvasManager : MonoBehaviour
 
     CanvasStates currenteCanvasState;
 
+
+    static CanvasManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public static CanvasManager GetInstance()
+    {
+        return instance;
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (CurrentCanvasState == CanvasStates.InGame)
+            {
+                ChangeCanvas(CanvasStates.PauseMenu);
+            }
+            else
+            {
+                ChangeCanvas(CanvasStates.InGame);
+            }
+        }
+    }
+
     public CanvasStates CurrentCanvasState => currenteCanvasState;
 
     public void UpdadeSoulsText(int currentValue)

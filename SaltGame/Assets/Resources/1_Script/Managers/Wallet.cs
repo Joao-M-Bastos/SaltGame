@@ -25,6 +25,13 @@ public class Wallet : MonoBehaviour
         return instance;
     }
 
+    public void ResetWallet()
+    {
+        currency = 0;
+        tempCurrency = 0;
+        souls = 0;
+    }
+
     #region Currency
 
     public int GetCurrency()
@@ -40,21 +47,22 @@ public class Wallet : MonoBehaviour
     public void AddCurrencyValue(int value)
     {
         tempCurrency += value;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
+        CanvasManager.GetInstance().UpdateCurrencyText(tempCurrency, currency);
     }
 
     public void ResetCurrency()
     {
         tempCurrency = 0;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
+        CanvasManager.GetInstance().UpdateCurrencyText(tempCurrency, currency);
     }
 
     public void SaveCurrency()
     {
         currency += tempCurrency;
         tempCurrency = 0;
-        GameManager.GetInstance().UpdadeCurrencyCanvas(tempCurrency, currency);
+        CanvasManager.GetInstance().UpdateCurrencyText(tempCurrency, currency);
     }
+
     #endregion
 
     #region Souls
@@ -62,7 +70,7 @@ public class Wallet : MonoBehaviour
     public void AddSoulsValue(int value)
     {
         souls += value;
-        GameManager.GetInstance().UpdadeSoulsCanvas(GetSouls());
+        CanvasManager.GetInstance().UpdadeSoulsText(GetSouls());
     }
 
     public int GetSouls()
@@ -73,7 +81,7 @@ public class Wallet : MonoBehaviour
     public void ResetSouls()
     {
         souls = 0;
-        GameManager.GetInstance().UpdadeSoulsCanvas(GetSouls());
+        CanvasManager.GetInstance().UpdadeSoulsText(GetSouls());
     }
 
     #endregion

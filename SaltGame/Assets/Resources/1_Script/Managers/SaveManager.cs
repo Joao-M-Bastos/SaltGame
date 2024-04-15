@@ -6,7 +6,7 @@ using System.Xml;
 
 public class SaveManager : MonoBehaviour
 {
-    [SerializeField]PlayerScrpt player;
+    PlayerScrpt player;
 
     private void Start()
     {
@@ -31,6 +31,14 @@ public class SaveManager : MonoBehaviour
         foreach(BaseEnemy enemy in enemies)
         {
             save.enemyPosition.Add(enemy.transform.position.x);
+
+            int direction = 1;
+
+            if(enemy.transform.rotation.x > 0)
+                direction = -1;
+
+
+            save.enemyDirection.Add(direction);
         }
 
         return save;
@@ -63,6 +71,10 @@ public class SaveManager : MonoBehaviour
         playerPositionElement.InnerText = save.playerPosition.ToString();
         root.AppendChild(playerPositionElement);
 
+        XmlElement playerStateElement = xmlDocument.CreateElement("StateIDNumber");
+        playerStateElement.InnerText = save.playerState.ToString();
+        root.AppendChild(playerStateElement);
+
         XmlElement playerSceneElement = xmlDocument.CreateElement("SceneNumber");
         playerSceneElement.InnerText = save.playerScene.ToString();
         root.AppendChild(playerSceneElement);
@@ -75,11 +87,28 @@ public class SaveManager : MonoBehaviour
         lifeElement.InnerText = save.playerLife.ToString();
         root.AppendChild(lifeElement);
 
+        XmlElement enemy, enemyPosition, enemyDirection;
+
+        for (int i = 0; i < save.enemyPosition.Count; i++)
+        {
+            enemy = xmlDocument.CreateElement("Enemy");
+
+            enemyPosition = xmlDocument.CreateElement("EnemyPosition");
+            enemyPosition.InnerText = save.enemyPosition[i].ToString();
+            enemy.AppendChild(enemyPosition);
+
+            enemyDirection = xmlDocument.CreateElement("EnemyDirection");
+            enemyDirection.InnerText = save.enemyDirection[i].ToString();
+            enemy.AppendChild(enemyDirection);
+
+            root.AppendChild(enemy);
+        }
         #endregion
 
         xmlDocument.AppendChild(root);
 
         xmlDocument.Save(Application.dataPath + "/DataXML.text");
+
         if(File.Exists(Application.dataPath + "/DataXML.text"))
         {
             Debug.Log("XML Saved");
@@ -88,6 +117,99 @@ public class SaveManager : MonoBehaviour
 
     public void LoadByXLM()
     {
+        if (File.Exists(Application.dataPath + "/DataXML.text"))
+        {
+            //LOAD THE GAME
+            Save save = new Save();
 
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.Load(Application.dataPath + "/DataXML.text");
+
+            //MARKER Get the SAVE FILE DATA from the FILE
+            //XmlNodeList: Represents an ordered collection of nodes.
+            XmlNodeList soulsElement = xmlDocument.GetElementsByTagName("SoulsNumber");
+            int soulsNumCount = int.Parse(soulsElement[0].InnerText);
+            save.soulsNum = soulsNumCount;
+
+            XmlNodeList currencyElement = xmlDocument.GetElementsByTagName("CurrencyNumber");
+            int currencyNumCount = int.Parse(currencyElement[0].InnerText);
+            save.currencyNum = currencyNumCount;
+
+            XmlNodeList tempCurrencyElement = xmlDocument.GetElementsByTagName("TempCurrencyNumber");
+            int tempCurrencyElementCount = int.Parse(tempCurrencyElement[0].InnerText);
+            save.tempCurrencyNum = tempCurrencyElementCount;
+
+            XmlNodeList playerPositionElement = xmlDocument.GetElementsByTagName("PlayerPositionNumber");
+            float playerPositionElementCount = float.Parse(playerPositionElement[0].InnerText);
+            save.playerPosition = playerPositionElementCount;
+
+            XmlNodeList playerSceneElement = xmlDocument.GetElementsByTagName("SceneNumber");
+            int playerSceneElementCount = int.Parse(playerSceneElement[0].InnerText);
+            save.playerScene = playerSceneElementCount;
+
+            XmlNodeList energyElement = xmlDocument.GetElementsByTagName("EnergyNumber");
+            int energyElementCount = int.Parse(energyElement[0].InnerText);
+            save.playerEnergy = energyElementCount;
+
+            XmlNodeList lifeElement = xmlDocument.GetElementsByTagName("LifeNumber");
+            int lifeElementCount = int.Parse(lifeElement[0].InnerText);
+            save.playerLife = lifeElementCount;
+
+            //MARKER ADVANCED LOAD enemies positions and their status
+            XmlNodeList enemies = xmlDocument.GetElementsByTagName("Enemy");
+            if (enemies.Count != 0)
+            {
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    XmlNodeList enemyPosition = xmlDocument.GetElementsByTagName("EnemyPosition");
+                    float enemyPos = float.Parse(enemyPosition[i].InnerText);
+                    save.enemyPosition.Add(enemyPos);
+
+                    XmlNodeList enemyDirection = xmlDocument.GetElementsByTagName("EnemyDirection");
+                    int enemyDir = int.Parse(enemyDirection[i].InnerText);
+                    save.enemyDirection.Add(enemyDir);
+                }
+            }
+
+
+            //Load Wallet values
+            Wallet.instance.ResetWallet();
+
+            Wallet.instance.AddSoulsValue(save.soulsNum);
+
+            Wallet.instance.AddCurrencyValue(save.currencyNum);
+            Wallet.instance.SaveCurrency();
+
+            Wallet.instance.AddCurrencyValue(save.tempCurrencyNum);
+
+            //Load Player Values
+
+            CommomMetods.GoToScene(save.playerScene);
+
+            player.transform.position = new Vector3(save.playerPosition, 0.6f, 0);
+
+            player.ReSetValues();
+
+            player.LoseLife(3-save.playerLife);
+
+            player.Tired(100 - save.playerEnergy);
+
+            
+
+            //MARKER Enemy position
+            for (int i = 0; i < save.enemyPosition.Count; i++)
+            {
+                float enemyPos = save.enemyPosition[i];
+                float enemyDirection = save.enemyDirection[i];
+                Instantiate(Lists.GetEnemyById(0), new Vector3(enemyPos, 0.6f, 0), Quaternion.identity);
+            }
+
+            Debug.Log("XML Loaded");
+        }
+        else
+        {
+            Debug.Log("NOT FOUNDED FILE");
+        }
     }
 }
+

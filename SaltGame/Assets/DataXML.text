@@ -2,8 +2,9 @@
   <SoulsNumber>0</SoulsNumber>
   <CurrencyNumber>0</CurrencyNumber>
   <TempCurrencyNumber>0</TempCurrencyNumber>
-  <PlayerPositionNumber>-2,77</PlayerPositionNumber>
-  <SceneNumber>1</SceneNumber>
-  <EnergyNumber>0</EnergyNumber>
+  <PlayerPositionNumber>-9,003544</PlayerPositionNumber>
+  <StateIDNumber>0</StateIDNumber>
+  <SceneNumber>2</SceneNumber>
+  <EnergyNumber>100</EnergyNumber>
   <LifeNumber>3</LifeNumber>
 </Save>

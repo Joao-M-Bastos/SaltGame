@@ -74,13 +74,14 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
         BaseSword.onPlayerHit += HitEnemyCallback;
 
-        SetValues();
+        ReSetValues();
     }
 
-    public void SetValues()
-    {
+    public void ReSetValues()
+    { 
         currentLife = maxLife;
-        GameManager.GetInstance().UpdateLife(currentLife);
+        FullRest();
+        CanvasManager.GetInstance().UpdadeLifeText(currentLife);
     }
 
     private void OnLevelWasLoaded(int level)
@@ -93,8 +94,13 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         if (other.TryGetComponent(out InteractiveEntrance entrance))
         {
             currentEntrance = entrance;
-            nextScenePositionCode = entrance.GetNextPositionCode();
+            SetPositionCode(entrance.GetNextPositionCode());
         }
+    }
+
+    public void SetPositionCode(int value)
+    {
+        nextScenePositionCode = value;
     }
 
     public void MovePlayerToNextPoint()
@@ -106,7 +112,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         }
 
         currentEntrance = null;
-        nextScenePositionCode = 0;
+        SetPositionCode(0);
     }
 
     private void OnTriggerExit(Collider other)
@@ -137,22 +143,16 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         LoseLife(1);
     }
 
-    private void LoseLife(int value)
+    public void LoseLife(int value)
     {
         currentLife -= value;
-        GameManager.GetInstance().UpdateLife(currentLife);
+        CanvasManager.GetInstance().UpdadeLifeText(currentLife);
 
         if(currentLife <= 0)
         {
-            SetValues();
+            ReSetValues();
             playerMachineController.ChangeState(playerMachineController.movingState);
         }
-    }
-
-    public void SaltExplosion()
-    {
-        explosionCoolown = 0.1f;
-        SetExplosionCollider(true);
     }
 
     public IEnumerator ChangePlace()
@@ -185,6 +185,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         lookingRight = !lookingRight;
     }
 
+    #region Colliders
+
     public void SetShildCollider(bool value)
     {
         shildBox.SetActive(value);
@@ -195,12 +197,19 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         saltExplosionCollider.SetActive(value);
     }
 
+    public void SaltExplosion()
+    {
+        explosionCoolown = 0.1f;
+        SetExplosionCollider(true);
+    }
     public void HitEnemyCallback()
     {
         Debug.Log("Enemy killed");
     }
 
-    #region Tiredness
+    #endregion
+
+    #region Energy
 
     public void FullRest()
     {
@@ -230,7 +239,6 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
         return false;
 
     }
-
     #endregion
 
     #region Sword

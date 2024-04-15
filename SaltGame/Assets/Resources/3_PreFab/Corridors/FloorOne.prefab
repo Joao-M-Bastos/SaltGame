@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98acc29e7cd1e89408b955e407ba3a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCorridors: 2
-  maxCorridors: 4
+  minCorridors: 3
+  maxCorridors: 3
   listOfPossibleCorridors:
   - {fileID: 5965116075428012648, guid: aa81c753e87e82141aa129744c0b436a, type: 3}
-  - {fileID: 5965116075428012648, guid: 1a85083bb22a39343af621e1795ba1e2, type: 3}
+  secretChestCorridor: {fileID: 5965116075428012648, guid: 935b24064de32154f99bf128af5b1a53, type: 3}
+  safePointCorridor: {fileID: 0}
 --- !u!1 &5041196320995236114
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +93,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5041196320995236114}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -172,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 6466008241030459016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.919014, y: -0.44645834, z: -3.1987276}
+  m_LocalPosition: {x: -17.15, y: 0, z: 2}
   m_LocalScale: {x: 10.075058, y: 12.504705, z: 1.2504705}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -204,8 +206,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -353,8 +353,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7731692099114624910}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -465,8 +466,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

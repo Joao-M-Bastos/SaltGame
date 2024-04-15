@@ -17,6 +17,10 @@ public class WaveCaller : MonoBehaviour
 
             Instantiate(possibleWaves[waveIndexValue], this.transform.position, this.transform.rotation);
         }
+
+        //Remover para o metodo novo de salvamento
+        GameManager.GetInstance().AddDestroyedWave();
+
         Destroy(this.gameObject);
     }
 }

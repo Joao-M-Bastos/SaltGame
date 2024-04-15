@@ -13,7 +13,9 @@ public class Corridor : MonoBehaviour
 
     [SerializeField] Transform extraCorridorPoint;
 
-    public void GenerateCorridor(int currentCorridorCount)
+    [SerializeField] int minWaves;
+
+    public void GenerateCorridor(int currentCorridorCount, bool off)
     {
         transform.position += new Vector3(0, 100 * currentCorridorCount, 0);
         
@@ -26,7 +28,10 @@ public class Corridor : MonoBehaviour
         goToNextEntrance.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
         goToNextExit.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
 
-        GenerateRandomWaveAmount();
+        if (off)
+            waveCallers[0].gameObject.SetActive(false);
+
+        //GenerateRandomWaveAmount();
     }
 
     private void GenerateRandomWaveAmount()
@@ -34,7 +39,7 @@ public class Corridor : MonoBehaviour
         if (waveCallers.Length == 0)
             return;
 
-        int waveAmount = Random.Range(0,waveCallers.Length) + 1;
+        int waveAmount = Random.Range(minWaves, waveCallers.Length);
 
         while(waveAmount > 0)
         {

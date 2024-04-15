@@ -473,12 +473,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53eaf787af59cda4a84069b2dc16040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveCallers: []
+  waveCallers:
+  - {fileID: 3038523918134134402}
   goToNextEntrance: {fileID: 1170790966070817851}
   goToNextExit: {fileID: 3429330163445516304}
   loadEntrance: {fileID: 2959060781699465109}
   loadExit: {fileID: 2629734426048008479}
   extraCorridorPoint: {fileID: 4729696565506823491}
+  minWaves: 1
 --- !u!1 &7212352234395075844
 GameObject:
   m_ObjectHideFlags: 0

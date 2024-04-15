@@ -27,6 +27,9 @@ public class FloorOne : MonoBehaviour
         for (int i = 0; i < corridorsAmount; i++)
         {
             corridors[i] = Instantiate(listOfPossibleCorridors[Random.Range(0, listOfPossibleCorridors.Length)]).GetComponent<Corridor>();
+            
+
+            
             corridors[i].GenerateCorridor(i);
         }
         corridors[0].FirstCorridor();

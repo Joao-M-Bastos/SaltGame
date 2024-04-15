@@ -1,10 +1,18 @@
 <Save FileName="File_01">
-  <SoulsNumber>0</SoulsNumber>
+  <SoulsNumber>9</SoulsNumber>
   <CurrencyNumber>0</CurrencyNumber>
   <TempCurrencyNumber>0</TempCurrencyNumber>
-  <PlayerPositionNumber>-10,89881</PlayerPositionNumber>
+  <PlayerPositionNumber>-3,712012</PlayerPositionNumber>
   <StateIDNumber>0</StateIDNumber>
   <SceneNumber>2</SceneNumber>
-  <EnergyNumber>100</EnergyNumber>
-  <LifeNumber>3</LifeNumber>
+  <EnergyNumber>65</EnergyNumber>
+  <LifeNumber>2</LifeNumber>
+  <Enemy>
+    <EnemyPosition>-1,599931</EnemyPosition>
+    <EnemyDirection>1</EnemyDirection>
+  </Enemy>
+  <Enemy>
+    <EnemyPosition>-7,799939</EnemyPosition>
+    <EnemyDirection>1</EnemyDirection>
+  </Enemy>
 </Save>

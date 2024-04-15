@@ -44,6 +44,17 @@ public class GameManager : MonoBehaviour
         numOfWavesDestroyed++;
     }
 
+    public bool ReduceDestroyedWave()
+    {
+        bool temp = false;
+
+        if (numOfWavesDestroyed > 0)
+            temp = true;
+
+        numOfWavesDestroyed--;
+        return temp;
+    }
+
     public void ResetDestroyedWaveNum()
     {
         numOfWavesDestroyed = 0;

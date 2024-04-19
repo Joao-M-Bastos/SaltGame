@@ -715,7 +715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba46fb498102d2748aef3f69092a5e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasManager: {fileID: 6463207967474543920}
 --- !u!114 &2026131611661823968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,7 +2021,7 @@ MonoBehaviour:
   - {fileID: 1043327731282967788, guid: 477686fd0ed4d9547a5de4222eaa6e91, type: 3}
   - {fileID: 1043327731282967788, guid: 477686fd0ed4d9547a5de4222eaa6e91, type: 3}
   nonStaticEnemies:
-  - {fileID: 6954950833531211088, guid: 713fdf5801ada1640be47662f64b08b7, type: 3}
+  - {fileID: 6954950833531211088, guid: a1e5b7dbd53b2fe4ab723b3501971330, type: 3}
 --- !u!1 &7467308350578538230
 GameObject:
   m_ObjectHideFlags: 0

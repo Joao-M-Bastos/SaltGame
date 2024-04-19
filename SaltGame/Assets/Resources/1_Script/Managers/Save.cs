@@ -11,11 +11,12 @@ public class Save
 
     public float playerPosition;
     public int playerScene;
-
     public int playerState;
 
     public int playerEnergy;
     public int playerLife;
+
+    public int numOfWavesDestroyed;
 
     public List<float> enemyPosition = new List<float>();
     public List<int> enemyDirection = new List<int>();

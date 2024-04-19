@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
 
     bool loadedInScene;
-    int numOfWavesDestroyed;
+    [SerializeField]int numOfWavesDestroyed;
+
+    public int NumOfWavesDestroyed => numOfWavesDestroyed;
 
     public static GameManager GetInstance()
     {        
@@ -39,9 +41,9 @@ public class GameManager : MonoBehaviour
         loadedInScene = value;
     }
 
-    public void AddDestroyedWave()
+    public void AddDestroyedWave(int value)
     {
-        numOfWavesDestroyed++;
+        numOfWavesDestroyed += value;
     }
 
     public bool ReduceDestroyedWave()
@@ -49,9 +51,10 @@ public class GameManager : MonoBehaviour
         bool temp = false;
 
         if (numOfWavesDestroyed > 0)
+        {
             temp = true;
-
-        numOfWavesDestroyed--;
+            numOfWavesDestroyed--;
+        }
         return temp;
     }
 

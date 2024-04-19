@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 1905090917320389205}
   m_Layer: 6
   m_Name: TpEnemyy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,6 +473,7 @@ MonoBehaviour:
   speed: 2
   currencyValue: 2
   floating: 0
+  body: {fileID: 0}
   distace: 10
   preTPMash: {fileID: 4552107716540679788}
   posTPMash: {fileID: 1110035844752745730}

@@ -1,18 +1,35 @@
 <Save FileName="File_01">
-  <SoulsNumber>9</SoulsNumber>
+  <SoulsNumber>0</SoulsNumber>
   <CurrencyNumber>0</CurrencyNumber>
   <TempCurrencyNumber>0</TempCurrencyNumber>
-  <PlayerPositionNumber>-3,712012</PlayerPositionNumber>
-  <StateIDNumber>0</StateIDNumber>
+  <PlayerPositionNumber>-3,654037</PlayerPositionNumber>
+  <StateIDNumber>1</StateIDNumber>
   <SceneNumber>2</SceneNumber>
-  <EnergyNumber>65</EnergyNumber>
-  <LifeNumber>2</LifeNumber>
+  <EnergyNumber>85</EnergyNumber>
+  <LifeNumber>3</LifeNumber>
+  <NumberOfWavesDestroyed>1</NumberOfWavesDestroyed>
   <Enemy>
-    <EnemyPosition>-1,599931</EnemyPosition>
+    <EnemyPosition>10,99998</EnemyPosition>
+    <EnemyDirection>-1</EnemyDirection>
+  </Enemy>
+  <Enemy>
+    <EnemyPosition>-20,16006</EnemyPosition>
     <EnemyDirection>1</EnemyDirection>
   </Enemy>
   <Enemy>
-    <EnemyPosition>-7,799939</EnemyPosition>
+    <EnemyPosition>16,58006</EnemyPosition>
+    <EnemyDirection>-1</EnemyDirection>
+  </Enemy>
+  <Enemy>
+    <EnemyPosition>-25,68005</EnemyPosition>
+    <EnemyDirection>1</EnemyDirection>
+  </Enemy>
+  <Enemy>
+    <EnemyPosition>22,16007</EnemyPosition>
+    <EnemyDirection>-1</EnemyDirection>
+  </Enemy>
+  <Enemy>
+    <EnemyPosition>-31,49986</EnemyPosition>
     <EnemyDirection>1</EnemyDirection>
   </Enemy>
 </Save>

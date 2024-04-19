@@ -7,6 +7,7 @@ using System.Xml;
 public class SaveManager : MonoBehaviour
 {
     PlayerScrpt player;
+    Save saved;
 
     private void Start()
     {
@@ -22,9 +23,12 @@ public class SaveManager : MonoBehaviour
 
         save.playerPosition = player.transform.position.x;
         save.playerScene = CommomMetods.GetSceneCode();
+        save.playerState = player.PlayerMachineControllerinstance.GetStateID();
 
         save.playerLife = player.CurrentLife;
         save.playerEnergy = (int)player.CurrentEnergy;
+
+        save.numOfWavesDestroyed = GameManager.GetInstance().NumOfWavesDestroyed;
 
         BaseEnemy[] enemies = FindObjectsOfType<BaseEnemy>();
         
@@ -32,10 +36,10 @@ public class SaveManager : MonoBehaviour
         {
             save.enemyPosition.Add(enemy.transform.position.x);
 
-            int direction = 1;
+            int direction = -1;
 
-            if(enemy.transform.rotation.x > 0)
-                direction = -1;
+            if(enemy.transform.rotation.y > 0)
+                direction = 1;
 
 
             save.enemyDirection.Add(direction);
@@ -86,6 +90,10 @@ public class SaveManager : MonoBehaviour
         XmlElement lifeElement = xmlDocument.CreateElement("LifeNumber");
         lifeElement.InnerText = save.playerLife.ToString();
         root.AppendChild(lifeElement);
+
+        XmlElement wavesDestroyedElement = xmlDocument.CreateElement("NumberOfWavesDestroyed");
+        wavesDestroyedElement.InnerText = save.numOfWavesDestroyed.ToString();
+        root.AppendChild(wavesDestroyedElement);
 
         XmlElement enemy, enemyPosition, enemyDirection;
 
@@ -143,6 +151,10 @@ public class SaveManager : MonoBehaviour
             float playerPositionElementCount = float.Parse(playerPositionElement[0].InnerText);
             save.playerPosition = playerPositionElementCount;
 
+            XmlNodeList playerStateElement = xmlDocument.GetElementsByTagName("StateIDNumber");
+            int playerStateElementCount = int.Parse(playerStateElement[0].InnerText);
+            save.playerState = playerStateElementCount;
+
             XmlNodeList playerSceneElement = xmlDocument.GetElementsByTagName("SceneNumber");
             int playerSceneElementCount = int.Parse(playerSceneElement[0].InnerText);
             save.playerScene = playerSceneElementCount;
@@ -155,8 +167,13 @@ public class SaveManager : MonoBehaviour
             int lifeElementCount = int.Parse(lifeElement[0].InnerText);
             save.playerLife = lifeElementCount;
 
+            XmlNodeList wavesDestroyedElement = xmlDocument.GetElementsByTagName("NumberOfWavesDestroyed");
+            int wavesDestroyedElementCount = int.Parse(wavesDestroyedElement[0].InnerText);
+            save.numOfWavesDestroyed = wavesDestroyedElementCount;
+
             //MARKER ADVANCED LOAD enemies positions and their status
-            XmlNodeList enemies = xmlDocument.GetElementsByTagName("Enemy");
+            XmlNodeList enemies = xmlDocument.GetElementsByTagName("EnemyPosition");
+            
             if (enemies.Count != 0)
             {
                 for (int i = 0; i < enemies.Count; i++)
@@ -171,6 +188,8 @@ public class SaveManager : MonoBehaviour
                 }
             }
 
+            
+
 
             //Load Wallet values
             Wallet.instance.ResetWallet();
@@ -182,15 +201,17 @@ public class SaveManager : MonoBehaviour
 
             Wallet.instance.AddCurrencyValue(save.tempCurrencyNum);
 
-            //Load Player Values
+            //Game Manager and scene
 
-            Camera.main.GetComponent<Animator>().SetTrigger("ReFade");
-
+            CanvasManager.GetInstance().Refade(0.5f);
             CommomMetods.GoToScene(save.playerScene);
 
             GameManager.GetInstance().SetLoadedInScene(true);
+            GameManager.GetInstance().AddDestroyedWave(save.numOfWavesDestroyed);
 
-            player.transform.position = new Vector3(save.playerPosition, 0.6f, 0);
+            //Load Player Values
+
+            player.transform.position = new Vector3(save.playerPosition, 0.6f, 0);            
 
             player.ReSetValues();
 
@@ -198,15 +219,9 @@ public class SaveManager : MonoBehaviour
 
             player.Tired(100 - save.playerEnergy);
 
-            
+            player.PlayerMachineControllerinstance.ChangeStateByID(save.playerState);
 
-            //MARKER Enemy position
-            for (int i = 0; i < save.enemyPosition.Count; i++)
-            {
-                float enemyPos = save.enemyPosition[i];
-                float enemyDirection = save.enemyDirection[i];
-                Instantiate(Lists.GetEnemyById(0), new Vector3(enemyPos, 0.6f, 0), Quaternion.identity);
-            }
+            saved = save;
 
             Debug.Log("XML Loaded");
         }
@@ -214,6 +229,24 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("NOT FOUNDED FILE");
         }
+    }
+
+    private void OnLevelWasLoaded()
+    {
+        if (saved == null)
+            return;
+
+        //MARKER Enemy position
+        for (int i = 0; i < saved.enemyPosition.Count; i++)
+        {
+            float enemyPos = saved.enemyPosition[i];
+            float enemyDirection = saved.enemyDirection[i];
+
+            GameObject enemy = Instantiate(Lists.GetEnemyById(0), new Vector3(enemyPos, 1f, 0), Quaternion.identity);
+
+            enemy.transform.Rotate(new Vector3(0, 90 * enemyDirection, 0));
+        }
+        saved = null;
     }
 }
 

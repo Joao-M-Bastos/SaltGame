@@ -25,6 +25,22 @@ public class PlayerMachineController : MonoBehaviour
         ChangeState(movingState);
     }
 
+
+    public void ChangeStateByID(int nextState)
+    {
+        if (currentState != null) currentState.StopState(this, player);
+
+        switch (nextState)
+        {
+            case 0: currentState = movingState;
+                break; 
+            case 1: currentState = combatState; 
+                break;
+        }
+
+        currentState.StartState(this, player);
+    }
+
     public void ChangeState(PlayerBaseState nextState)
     {
         if (currentState != null) currentState.StopState(this, player);
@@ -32,6 +48,16 @@ public class PlayerMachineController : MonoBehaviour
         currentState = nextState;
 
         currentState.StartState(this, player);
+    }
+
+    public int GetStateID()
+    {
+        int id = 0;
+
+        if (currentState == combatState)
+            id = 1;
+
+        return id;
     }
 
     // Update is called once per frame

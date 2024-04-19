@@ -31,6 +31,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public RightHand RightHand => rightHand;
 
+    public PlayerMachineController PlayerMachineControllerinstance => playerMachineController;
+
     public InteractiveEntrance CurrentEntrance => currentEntrance;
 
     #endregion
@@ -151,6 +153,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
         if(currentLife <= 0)
         {
+            GameManager.GetInstance().GameOver();
             ReSetValues();
             playerMachineController.ChangeState(playerMachineController.movingState);
         }
@@ -158,9 +161,8 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public IEnumerator ChangePlace()
     {
-        Camera.main.GetComponent<Animator>().SetInteger("Fade", 1);
+        CanvasManager.GetInstance().Refade(1);
         yield return new WaitForSeconds(1f);
-        Camera.main.GetComponent<Animator>().SetInteger("Fade", 0);
         MovePlayerToNextPoint();
     }
 

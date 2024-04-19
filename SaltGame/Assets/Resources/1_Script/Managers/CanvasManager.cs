@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,9 @@ using UnityEngine.UI;
 public enum CanvasStates
 {
     InGame,
-    PauseMenu
+    PauseMenu,
+    FadeOut,
+    FadeIn
 }
 
 public class CanvasManager : MonoBehaviour
@@ -15,8 +18,12 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject canvasInGame, canvasPauseMenu;
     [SerializeField] Text soulsText, currencyText, lifeText;
 
-    CanvasStates currenteCanvasState;
+    Animator cameraAnimator;
+    float fadeCooldown;
 
+    CanvasStates currentCanvasState;
+
+    public CanvasStates CurrentCanvasState => currentCanvasState;
 
     static CanvasManager instance;
 
@@ -25,7 +32,9 @@ public class CanvasManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            cameraAnimator = Camera.main.GetComponent<Animator>();
         }
+
     }
 
     public static CanvasManager GetInstance()
@@ -37,7 +46,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (CurrentCanvasState == CanvasStates.InGame)
+            if (currentCanvasState == CanvasStates.InGame)
             {
                 ChangeCanvas(CanvasStates.PauseMenu);
             }
@@ -46,9 +55,8 @@ public class CanvasManager : MonoBehaviour
                 ChangeCanvas(CanvasStates.InGame);
             }
         }
+        WaitToFadeIn();
     }
-
-    public CanvasStates CurrentCanvasState => currenteCanvasState;
 
     public void UpdadeSoulsText(int currentValue)
     {
@@ -67,9 +75,35 @@ public class CanvasManager : MonoBehaviour
 
     public void ChangeCanvas(CanvasStates state)
     {
-        currenteCanvasState = state;
+        currentCanvasState = state;
 
-        canvasPauseMenu.SetActive( state == CanvasStates.InGame);
-        canvasInGame.SetActive(state == CanvasStates.InGame || state == CanvasStates.PauseMenu);
+        canvasPauseMenu.SetActive(currentCanvasState == CanvasStates.PauseMenu);
+        Debug.Log(currentCanvasState == CanvasStates.PauseMenu);
+        canvasInGame.SetActive(currentCanvasState == CanvasStates.InGame || currentCanvasState == CanvasStates.PauseMenu);
+
+        if(currentCanvasState == CanvasStates.FadeIn)
+            cameraAnimator.SetInteger("Fade", 0);
+
+        if (currentCanvasState == CanvasStates.FadeOut)
+            cameraAnimator.SetInteger("Fade", 1);
+    }
+
+    public void Refade(float time)
+    {
+        ChangeCanvas(CanvasStates.FadeOut);
+        fadeCooldown = time;
+    }
+
+    private void WaitToFadeIn()
+    {
+        if (currentCanvasState != CanvasStates.FadeOut)
+            return;
+
+        if (fadeCooldown < 0)
+        {
+            ChangeCanvas(CanvasStates.FadeIn);
+        }
+
+        fadeCooldown -= Time.deltaTime;
     }
 }

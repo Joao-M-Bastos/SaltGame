@@ -15,7 +15,7 @@ public class Corridor : MonoBehaviour
 
     [SerializeField] int minWaves;
 
-    public void GenerateCorridor(int currentCorridorCount, bool off)
+    public void GenerateCorridor(int currentCorridorCount)
     {
         transform.position += new Vector3(0, 100 * currentCorridorCount, 0);
         
@@ -28,9 +28,11 @@ public class Corridor : MonoBehaviour
         goToNextEntrance.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
         goToNextExit.SetSceneCode(SceneManager.GetActiveScene().buildIndex);
 
-        if (off)
+        if (GameManager.GetInstance().ReduceDestroyedWave())
+        {
             waveCallers[0].gameObject.SetActive(false);
-
+        }
+        
         //GenerateRandomWaveAmount();
     }
 

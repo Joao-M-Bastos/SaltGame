@@ -34,9 +34,8 @@ public class EnterScene : MonoBehaviour, InteractiveEntrance
     }
     public IEnumerator ChangeScene()
     {
-        Camera.main.GetComponent<Animator>().SetInteger("Fade", 1);
+        CanvasManager.GetInstance().Refade(1f);
         yield return new WaitForSeconds(1f);
-        Camera.main.GetComponent<Animator>().SetInteger("Fade", 0);
         GoToNextScene();
     }
 

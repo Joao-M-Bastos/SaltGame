@@ -77,12 +77,20 @@ public class CanvasManager : MonoBehaviour
     {
         currentCanvasState = state;
 
+        Time.timeScale = 1;
+
+        if(currentCanvasState == CanvasStates.PauseMenu) 
+            Time.timeScale = 0;
+
         canvasPauseMenu.SetActive(currentCanvasState == CanvasStates.PauseMenu);
-        Debug.Log(currentCanvasState == CanvasStates.PauseMenu);
+        
         canvasInGame.SetActive(currentCanvasState == CanvasStates.InGame || currentCanvasState == CanvasStates.PauseMenu);
 
-        if(currentCanvasState == CanvasStates.FadeIn)
+        if (currentCanvasState == CanvasStates.FadeIn)
+        {
+            ChangeCanvas(CanvasStates.InGame);
             cameraAnimator.SetInteger("Fade", 0);
+        }
 
         if (currentCanvasState == CanvasStates.FadeOut)
             cameraAnimator.SetInteger("Fade", 1);

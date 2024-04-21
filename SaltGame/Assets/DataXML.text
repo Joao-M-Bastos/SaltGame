@@ -2,34 +2,10 @@
   <SoulsNumber>0</SoulsNumber>
   <CurrencyNumber>0</CurrencyNumber>
   <TempCurrencyNumber>0</TempCurrencyNumber>
-  <PlayerPositionNumber>-3,654037</PlayerPositionNumber>
-  <StateIDNumber>1</StateIDNumber>
+  <PlayerPositionNumber>-8,831823</PlayerPositionNumber>
+  <StateIDNumber>0</StateIDNumber>
   <SceneNumber>2</SceneNumber>
-  <EnergyNumber>85</EnergyNumber>
+  <EnergyNumber>100</EnergyNumber>
   <LifeNumber>3</LifeNumber>
-  <NumberOfWavesDestroyed>1</NumberOfWavesDestroyed>
-  <Enemy>
-    <EnemyPosition>10,99998</EnemyPosition>
-    <EnemyDirection>-1</EnemyDirection>
-  </Enemy>
-  <Enemy>
-    <EnemyPosition>-20,16006</EnemyPosition>
-    <EnemyDirection>1</EnemyDirection>
-  </Enemy>
-  <Enemy>
-    <EnemyPosition>16,58006</EnemyPosition>
-    <EnemyDirection>-1</EnemyDirection>
-  </Enemy>
-  <Enemy>
-    <EnemyPosition>-25,68005</EnemyPosition>
-    <EnemyDirection>1</EnemyDirection>
-  </Enemy>
-  <Enemy>
-    <EnemyPosition>22,16007</EnemyPosition>
-    <EnemyDirection>-1</EnemyDirection>
-  </Enemy>
-  <Enemy>
-    <EnemyPosition>-31,49986</EnemyPosition>
-    <EnemyDirection>1</EnemyDirection>
-  </Enemy>
+  <NumberOfWavesDestroyed>0</NumberOfWavesDestroyed>
 </Save>

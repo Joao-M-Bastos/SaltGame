@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 3614992873901220946}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.6, y: -1.74, z: 0}
+  m_LocalPosition: {x: 6.6, y: -2, z: 0}
   m_LocalScale: {x: 60.174004, y: 3.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -582,6 +582,7 @@ MonoBehaviour:
   loadEntrance: {fileID: 2959060781699465109}
   loadExit: {fileID: 2629734426048008479}
   extraCorridorPoint: {fileID: 7680535748904846805}
+  minWaves: 0
 --- !u!1 &7212352234395075844
 GameObject:
   m_ObjectHideFlags: 0

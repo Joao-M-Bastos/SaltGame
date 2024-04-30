@@ -1,0 +1,23 @@
+- Escurescer dungeon [X]
+- Levantar paredes []
+- Adicionar tochas para iluminação []
+- Blocagem do banheiro (safe room) []
+- Interface low-fidelity []
+- CÂMERA
+	- Enquadramento []
+	- Look ahead []
+	- Lurp []
+- DURANTE O COMBATE
+	- Mãos segurando o protagonista [X]
+	- Bordas escuras []
+
+
+-Implementar modelo do personagem [X]
+- Adicionar música de combate (Cosmic Temperance de Loop Hero)
+- Adicionar sound effects de place holder
+
+- ACHO QUE SERIA UMA BOA PLANEJARMOS O PROJETO PARA SER LANÇADO
+EM JANEIRO (que é o mês sem jogos triplo-A, por ser o fim do
+ano fiscal das empresas e ser logo depóis do Natal) [X]
+
+- Adicionar task de fazer um TEN-PAGER em INGLÊS

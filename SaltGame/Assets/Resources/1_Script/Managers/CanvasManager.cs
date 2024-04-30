@@ -9,7 +9,8 @@ public enum CanvasStates
     InGame,
     PauseMenu,
     FadeOut,
-    FadeIn
+    FadeIn,
+    Battle
 }
 
 public class CanvasManager : MonoBehaviour
@@ -75,16 +76,22 @@ public class CanvasManager : MonoBehaviour
 
     public void ChangeCanvas(CanvasStates state)
     {
+        if (CurrentCanvasState == CanvasStates.Battle && state != CanvasStates.Battle)
+            cameraAnimator.SetBool("InBattle", false);
+
         currentCanvasState = state;
+
+        if (CurrentCanvasState == CanvasStates.Battle)
+            cameraAnimator.SetBool("InBattle", true);
 
         Time.timeScale = 1;
 
-        if(currentCanvasState == CanvasStates.PauseMenu) 
+        if(currentCanvasState == CanvasStates.PauseMenu)
             Time.timeScale = 0;
 
         canvasPauseMenu.SetActive(currentCanvasState == CanvasStates.PauseMenu);
         
-        canvasInGame.SetActive(currentCanvasState == CanvasStates.InGame || currentCanvasState == CanvasStates.PauseMenu);
+        canvasInGame.SetActive(currentCanvasState == CanvasStates.InGame || currentCanvasState == CanvasStates.PauseMenu || currentCanvasState == CanvasStates.Battle);
 
         if (currentCanvasState == CanvasStates.FadeIn)
         {

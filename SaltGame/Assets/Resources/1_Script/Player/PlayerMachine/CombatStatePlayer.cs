@@ -13,6 +13,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         saltKnight.SetShildCollider(true);
         saltKnight.FullRest();
+        CanvasManager.GetInstance().ChangeCanvas(CanvasStates.Battle);
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)

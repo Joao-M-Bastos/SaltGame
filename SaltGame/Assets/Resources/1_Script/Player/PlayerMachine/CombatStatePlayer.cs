@@ -14,6 +14,7 @@ public class CombatStatePlayer : PlayerBaseState
         saltKnight.SetShildCollider(true);
         saltKnight.FullRest();
         CanvasManager.GetInstance().ChangeCanvas(CanvasStates.Battle);
+        SoundManager.GetInstance().PlayBattleSound();
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)

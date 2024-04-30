@@ -819,6 +819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735643302787391965}
   - component: {fileID: 4569060398679146838}
+  - component: {fileID: 7733547114918098363}
   m_Layer: 0
   m_Name: Sound Manager
   m_TagString: Untagged
@@ -851,11 +852,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 03633b637a952184a93a5df81549ed38, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.688
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -937,6 +938,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7733547114918098363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512616290322823990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0099381a69864bb49b3507a6233b57f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSound: {fileID: 4569060398679146838}
 --- !u!1 &2131632375307743744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,7 +2510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4825250628573927069
 RectTransform:
   m_ObjectHideFlags: 0

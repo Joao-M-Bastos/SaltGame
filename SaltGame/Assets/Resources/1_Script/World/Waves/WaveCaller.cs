@@ -20,7 +20,6 @@ public class WaveCaller : MonoBehaviour
 
         //Retirar pos apresentaçao
         GameManager.GetInstance().AddDestroyedWave(1);
-        Debug.Log("b");
 
         Destroy(this.gameObject);
     }

@@ -10,6 +10,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     #region References
 
     [SerializeField] Rigidbody rigidBody;
+    [SerializeField] ParticleSystem saltExplosionParticule;
 
     private InteractiveEntrance currentEntrance;
 
@@ -197,6 +198,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
 
     public void SetExplosionCollider(bool value)
     {
+        saltExplosionParticule.Play();
         saltExplosionCollider.SetActive(value);
     }
 

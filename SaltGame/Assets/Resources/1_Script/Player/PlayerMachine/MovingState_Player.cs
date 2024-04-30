@@ -23,7 +23,7 @@ public class MovingState_Player : PlayerBaseState
 
     public void StartState(PlayerMachineController controller, PlayerScrpt saltKnight)
     {
-        
+        CanvasManager.GetInstance().ChangeCanvas(CanvasStates.InGame);
     }
 
     public void StopState(PlayerMachineController controller, PlayerScrpt saltKnight)

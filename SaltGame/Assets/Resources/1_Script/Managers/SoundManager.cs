@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] AudioSource battleSound;
+    [SerializeField] AudioSource battleSound, saltExplosionSFDX, hitEnemySFDX;
 
     static SoundManager instance;
 
@@ -21,9 +21,35 @@ public class SoundManager : MonoBehaviour
         return instance;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayBattleSound();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            battleSound.volume += 0.1f;
+        }
+    }
 
     public void PlayBattleSound()
     {
         battleSound.Play();
+    }
+
+    public void StopBattleSound()
+    {
+        battleSound.Stop();
+    }
+
+    public void SaltExplosionSFDX()
+    {
+        saltExplosionSFDX.Play();
+    }
+
+    public void HitEnemySFDX()
+    {
+        hitEnemySFDX.Play();
     }
 }

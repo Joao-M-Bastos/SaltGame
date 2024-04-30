@@ -12,7 +12,7 @@ public class TeleportEnemy : BaseEnemy
     
     public override void OnDie()
     {
-        //throw new System.NotImplementedException();
+        SoundManager.GetInstance().HitEnemySFDX();
     }
 
     public override void SpecialMove()

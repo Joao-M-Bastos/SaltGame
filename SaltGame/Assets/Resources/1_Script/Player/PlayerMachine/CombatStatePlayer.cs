@@ -21,6 +21,7 @@ public class CombatStatePlayer : PlayerBaseState
     {
         saltKnight.SetShildCollider(false);
         saltKnight.DeactivateItems();
+        SoundManager.GetInstance().StopBattleSound();
     }
 
     public void UpdateState(PlayerMachineController controller, PlayerScrpt saltKnight)

@@ -205,6 +205,7 @@ public class PlayerScrpt : MonoBehaviour, HitCallback
     public void SaltExplosion()
     {
         explosionCoolown = 0.1f;
+        SoundManager.GetInstance().SaltExplosionSFDX();
         SetExplosionCollider(true);
     }
     public void HitEnemyCallback()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,6 +77,7 @@ public class CanvasManager : MonoBehaviour
 
     public void ChangeCanvas(CanvasStates state)
     {
+        Debug.Log(state);
         if (CurrentCanvasState == CanvasStates.Battle && state != CanvasStates.Battle)
             cameraAnimator.SetBool("InBattle", false);
 

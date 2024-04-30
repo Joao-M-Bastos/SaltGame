@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba46fb498102d2748aef3f69092a5e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfWavesDestroyed: 0
 --- !u!114 &2026131611661823968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,7 +1271,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 237142121854229711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2251891573385190601}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveByJson
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3182953343151266719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,7 +1681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7231405458981869301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2251891573385190601}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: LoadByJson
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5506477212708151135
 GameObject:
   m_ObjectHideFlags: 0

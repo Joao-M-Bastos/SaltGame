@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+
 using System.Xml;
+
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor.Playables;
+
 
 public class SaveManager : MonoBehaviour
 {
@@ -12,6 +17,24 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScrpt>();
+    }
+
+    private void OnLevelWasLoaded()
+    {
+        if (saved == null)
+            return;
+
+        //MARKER Enemy position
+        for (int i = 0; i < saved.enemyPosition.Count; i++)
+        {
+            float enemyPos = saved.enemyPosition[i];
+            float enemyDirection = saved.enemyDirection[i];
+
+            GameObject enemy = Instantiate(Lists.GetEnemyById(0), new Vector3(enemyPos, 1f, 0), Quaternion.identity);
+
+            enemy.transform.Rotate(new Vector3(0, 90 * enemyDirection, 0));
+        }
+        saved = null;
     }
 
     private Save CreateSaveObj() { 
@@ -47,6 +70,8 @@ public class SaveManager : MonoBehaviour
 
         return save;
     }
+
+    #region Xml
 
     public void SaveByXLM()
     {
@@ -123,7 +148,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void LoadByXLM()
+    public void LoadByXLM() 
     {
         if (File.Exists(Application.dataPath + "/DataXML.text"))
         {
@@ -227,26 +252,81 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("NOT FOUNDED FILE");
+            Debug.Log("NOT FOUNDED XML");
         }
     }
 
-    private void OnLevelWasLoaded()
+    #endregion
+    #region Json
+
+    //Make Save Obj into Json
+    public void SaveByJson()
     {
-        if (saved == null)
-            return;
+        Save save = CreateSaveObj();
 
-        //MARKER Enemy position
-        for (int i = 0; i < saved.enemyPosition.Count; i++)
-        {
-            float enemyPos = saved.enemyPosition[i];
-            float enemyDirection = saved.enemyDirection[i];
+        string jsonString = JsonUtility.ToJson(save);
 
-            GameObject enemy = Instantiate(Lists.GetEnemyById(0), new Vector3(enemyPos, 1f, 0), Quaternion.identity);
+        StreamWriter sw = new StreamWriter(Application.dataPath + "/JsonData.txt");
 
-            enemy.transform.Rotate(new Vector3(0, 90 * enemyDirection, 0));
-        }
-        saved = null;
+        sw.WriteLine(jsonString);
+        sw.Close();
+
+        Debug.Log("Saved By Json");
     }
+
+    public void LoadByJson()
+    {
+        if(File.Exists(Application.dataPath + "/JsonData.txt"))
+        {
+            //Get json
+            StreamReader sr = new StreamReader(Application.dataPath + "/JsonData.txt");
+            string jsonString = sr.ReadToEnd();
+            sr.Close();
+
+            //Json to Save obj
+
+            Save save = JsonUtility.FromJson<Save>(jsonString);
+
+            //Load Wallet values
+            Wallet.instance.ResetWallet();
+
+            Wallet.instance.AddSoulsValue(save.soulsNum);
+
+            Wallet.instance.AddCurrencyValue(save.currencyNum);
+            Wallet.instance.SaveCurrency();
+
+            Wallet.instance.AddCurrencyValue(save.tempCurrencyNum);
+
+            //Game Manager and scene
+
+            CanvasManager.GetInstance().Refade(0.5f);
+            CommomMetods.GoToScene(save.playerScene);
+
+            GameManager.GetInstance().SetLoadedInScene(true);
+            GameManager.GetInstance().AddDestroyedWave(save.numOfWavesDestroyed);
+
+            //Load Player Values
+
+            player.transform.position = new Vector3(save.playerPosition, 0.6f, 0);
+
+            player.ReSetValues();
+
+            player.LoseLife(3 - save.playerLife);
+
+            player.Tired(100 - save.playerEnergy);
+
+            player.PlayerMachineControllerinstance.ChangeStateByID(save.playerState);
+
+            saved = save;
+
+            Debug.Log("Loaded By Json");
+        }
+        else
+        {
+            Debug.Log("Json not save");
+        }
+    }
+
+    #endregion
 }
 

@@ -1,0 +1,1 @@
+{"soulsNum":0,"currencyNum":0,"tempCurrencyNum":0,"playerPosition":-8.177602767944336,"playerScene":1,"playerState":0,"playerEnergy":100,"playerLife":3,"numOfWavesDestroyed":0,"enemyPosition":[],"enemyDirection":[]}
